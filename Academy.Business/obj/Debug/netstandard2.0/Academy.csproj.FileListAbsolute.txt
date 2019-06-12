@@ -1,9 +1,0 @@
-C:\Users\danja\source\repos\Academy\Academy\bin\Debug\netstandard2.0\Academy.deps.json
-C:\Users\danja\source\repos\Academy\Academy\bin\Debug\netstandard2.0\Academy.dll
-C:\Users\danja\source\repos\Academy\Academy\bin\Debug\netstandard2.0\Academy.pdb
-C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.csprojAssemblyReference.cache
-C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.csproj.CoreCompileInputs.cache
-C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.AssemblyInfoInputs.cache
-C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.AssemblyInfo.cs
-C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.dll
-C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.pdb
