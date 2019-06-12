@@ -184,11 +184,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\danja\\source\\repos\\Academy\\Academy.Business\\Academy.Business.csproj",
+      "projectUniqueName": "C:\\Source\\Academy\\Academy.NetCore\\Academy.Business\\Academy.Business.csproj",
       "projectName": "Academy.Business",
-      "projectPath": "C:\\Users\\danja\\source\\repos\\Academy\\Academy.Business\\Academy.Business.csproj",
+      "projectPath": "C:\\Source\\Academy\\Academy.NetCore\\Academy.Business\\Academy.Business.csproj",
       "packagesPath": "C:\\Users\\danja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danja\\source\\repos\\Academy\\Academy.Business\\obj\\",
+      "outputPath": "C:\\Source\\Academy\\Academy.NetCore\\Academy.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

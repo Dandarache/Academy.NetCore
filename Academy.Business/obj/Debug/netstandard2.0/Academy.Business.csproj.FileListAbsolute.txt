@@ -7,3 +7,12 @@ C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Bus
 C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.AssemblyInfo.cs
 C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.dll
 C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.pdb
+C:\Source\Academy\Academy.NetCore\Academy.Business\bin\Debug\netstandard2.0\Academy.Business.deps.json
+C:\Source\Academy\Academy.NetCore\Academy.Business\bin\Debug\netstandard2.0\Academy.Business.dll
+C:\Source\Academy\Academy.NetCore\Academy.Business\bin\Debug\netstandard2.0\Academy.Business.pdb
+C:\Source\Academy\Academy.NetCore\Academy.Business\obj\Debug\netstandard2.0\Academy.Business.csprojAssemblyReference.cache
+C:\Source\Academy\Academy.NetCore\Academy.Business\obj\Debug\netstandard2.0\Academy.Business.csproj.CoreCompileInputs.cache
+C:\Source\Academy\Academy.NetCore\Academy.Business\obj\Debug\netstandard2.0\Academy.Business.AssemblyInfoInputs.cache
+C:\Source\Academy\Academy.NetCore\Academy.Business\obj\Debug\netstandard2.0\Academy.Business.AssemblyInfo.cs
+C:\Source\Academy\Academy.NetCore\Academy.Business\obj\Debug\netstandard2.0\Academy.Business.dll
+C:\Source\Academy\Academy.NetCore\Academy.Business\obj\Debug\netstandard2.0\Academy.Business.pdb
