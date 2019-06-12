@@ -1,0 +1,4 @@
+C:\Users\danja\source\repos\Academy\ConsoleApp1\obj\Debug\netcoreapp2.1\Academy.App.csprojAssemblyReference.cache
+C:\Users\danja\source\repos\Academy\ConsoleApp1\obj\Debug\netcoreapp2.1\Academy.App.csproj.CoreCompileInputs.cache
+C:\Users\danja\source\repos\Academy\ConsoleApp1\obj\Debug\netcoreapp2.1\Academy.App.AssemblyInfoInputs.cache
+C:\Users\danja\source\repos\Academy\ConsoleApp1\obj\Debug\netcoreapp2.1\Academy.App.AssemblyInfo.cs

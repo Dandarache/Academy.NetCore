@@ -1,0 +1,61 @@
+﻿
+Resultat av programkörning med "tv-data.txt" som indata:
+
+ALLA TITLAR
+
+Lill-Babs live från Sunnanå
+Det bästa ur Antikrundan
+Fatta Sveriges demokrati
+Skymningsläge - Sverige under kalla kriget
+Vänförfrågan väntar
+Aktuellt
+Kulturnyheterna
+Ensam mamma söker
+NCSI
+
+PROGRAM SOM BÖRJAR SENARE ÄN KL 21
+
+SVT1 21:00:00 Lill-Babs live från Sunnanå
+SVT1 22:00:00 Fatta Sveriges demokrati
+SVT2 21:00:00 Aktuellt
+SVT2 21:39:00 Kulturnyheterna
+TV3  21:00:00 NCSI
+
+PROGRAM FRÅN SVT2 I KRONOLOGISK ORDNING
+
+SVT2 20:00:00 Skymningsläge - Sverige under kalla kriget
+SVT2 20:45:00 Vänförfrågan väntar
+SVT2 21:00:00 Aktuellt
+SVT2 21:39:00 Kulturnyheterna
+
+FINNS PROGRAMMET 'KULTURNYHETERNA'?
+
+Ja
+
+FINNS PROGRAMMET 'ENSAM PAPPA SÖKER'?
+
+Nej
+
+ALLA PROGRAM SOM BÖRJAR KL 20.00
+
+SVT1 20:00:00 Det bästa ur Antikrundan
+SVT2 20:00:00 Skymningsläge - Sverige under kalla kriget
+TV3  20:00:00 Ensam mamma söker
+
+ALLA PROGRAMNAMN MED STORA BOKSTÄVER
+
+LILL-BABS LIVE FRÅN SUNNANÅ
+DET BÄSTA UR ANTIKRUNDAN
+FATTA SVERIGES DEMOKRATI
+SKYMNINGSLÄGE - SVERIGE UNDER KALLA KRIGET
+VÄNFÖRFRÅGAN VÄNTAR
+AKTUELLT
+KULTURNYHETERNA
+ENSAM MAMMA SÖKER
+NCSI
+
+ALLA KANALER
+
+SVT1
+SVT2
+TV3

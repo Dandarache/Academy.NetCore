@@ -1,0 +1,9 @@
+C:\Users\danja\source\repos\Academy\Academy\bin\Debug\netstandard2.0\Academy.Business.deps.json
+C:\Users\danja\source\repos\Academy\Academy\bin\Debug\netstandard2.0\Academy.Business.dll
+C:\Users\danja\source\repos\Academy\Academy\bin\Debug\netstandard2.0\Academy.Business.pdb
+C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.csprojAssemblyReference.cache
+C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.csproj.CoreCompileInputs.cache
+C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.AssemblyInfoInputs.cache
+C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.AssemblyInfo.cs
+C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.dll
+C:\Users\danja\source\repos\Academy\Academy\obj\Debug\netstandard2.0\Academy.Business.pdb
