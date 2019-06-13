@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Academy.ConsoleApp.Classes
 {
+    // Detta är en kommentar...
     public class Car
     {
 
