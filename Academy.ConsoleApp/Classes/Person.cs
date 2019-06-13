@@ -2,31 +2,38 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Academy.ConsoleApp.Demo.Classes
+namespace Academy.ConsoleApp.Classes
 {
     public class Person
     {
-        public Person() { }
-        public Person(
-            string firstName,
-            string lastName,
-            int age, 
-            DateTime birthDate)
+        // Field variables
+        public string FirstName;
+        public string LastName;
+        public int Age;
+        public DateTime Birthdate;
+        //public string Gender;
+        public GenderType Gender;
+
+        // Constructors
+        public Person()
+        {
+
+        }
+        //public Person(string firstName, string lastName, int age, DateTime birthdate, string gender)
+        public Person(string firstName, string lastName, int age, DateTime birthdate, GenderType gender)
         {
             FirstName = firstName;
             LastName = lastName;
-            Age = FundamentalsDemo1.StaticRandom.Next(1, age);
-            BirthDate = birthDate;
+            Age = age;
+            Birthdate = birthdate;
+            Gender = gender;
         }
 
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public int Age { get; private set; }
-        public DateTime BirthDate { get; private set; }
-
-        public void UpdateLastName(string lastName)
+        // Instance methods
+        public string FullName()
         {
-            this.LastName = lastName;
+            string fullName = $"{FirstName} {LastName}";
+            return fullName;
         }
     }
 }

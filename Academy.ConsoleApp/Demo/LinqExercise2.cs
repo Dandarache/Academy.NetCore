@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Linq;
+using Academy.ConsoleApp.Classes;
 
 namespace Academy.ConsoleApp.Demo
 {
@@ -138,11 +139,5 @@ namespace Academy.ConsoleApp.Demo
         public int Age { get; set; }
         public string Email { get; set; }
         public GenderType Gender { get; set; }
-    }
-
-    enum GenderType
-    {
-        Male,
-        Female
     }
 }
