@@ -9,6 +9,8 @@ namespace Academy.ConsoleApp.Demo
     {
         public void Run()
         {
+            // en ändring 
+
             // Parse enum value.
             var gender1 = Enum.Parse(typeof(GenderType), "Female");
             Console.WriteLine(gender1);

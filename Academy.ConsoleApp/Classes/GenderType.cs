@@ -6,9 +6,9 @@ namespace Academy.ConsoleApp.Classes
 {
     public enum GenderType
     {
-        Male = 0,
-        Female = 1,
-        InterGender = 2,
-        Unknown = 3
+        Male = 10,
+        Female = 20,
+        InterGender = 30,
+        Unknown = 40
     }
 }
