@@ -21,6 +21,8 @@ namespace Academy.ConsoleApp.Demo
             List<Shape> allShapes = AskForShapes();
 
             PrintAllShapes(allShapes);
+
+
         }
 
         /// <summary>
@@ -31,9 +33,11 @@ namespace Academy.ConsoleApp.Demo
         {
             foreach (var shape in shapes)
             {
+                Console.WriteLine(shape.HelloType());
                 Console.WriteLine(shape.ToString());
+                Console.WriteLine(Math.Round(shape.CalculateArea(), 2));
+                Console.WriteLine();
             }
-
         }
 
         /// <summary>
@@ -78,7 +82,7 @@ namespace Academy.ConsoleApp.Demo
             double radius;
             double.TryParse(myRadiusValue, out radius);
 
-            Circle circle = new Circle();
+            Circle circle = new Circle(radius);
             return circle;
         }
 
@@ -118,66 +122,5 @@ namespace Academy.ConsoleApp.Demo
 
             return triangle;
         }
-    }
-
-    /// <summary>
-    /// Base class for all shapes in this exercise.
-    /// </summary>
-    public class Shape
-    {
-
-    }
-
-    /// <summary>
-    /// Class definition for triangle.
-    /// </summary>
-    public class Triangle : Shape
-    {
-        double _baselength;
-        double _height;
-
-        public Triangle(double baselength, double height)
-        {
-            _baselength = baselength;
-            _height = height;
-        }
-
-        public override string ToString()
-        {
-            return $"I'm a triangle with baselength={_baselength} and height={_height}";
-        }
-
-        //public override double CalculateArea()
-        //{
-        //    return _baselength * _height / 2;
-        //}
-    }
-
-    /// <summary>
-    /// Class definition for rectangle.
-    /// </summary>
-    public class Rectangle : Shape
-    {
-        double _width = 0f;
-        double _height = 0f;
-
-        public Rectangle(double width, double height)
-        {
-            _width = width;
-            _height = height;
-        }
-
-        public override string ToString()
-        {
-            return $"I'm a rectangle with width = {_width} and height = {_height}";
-        }
-    }
-
-    /// <summary>
-    /// Class definition for circle.
-    /// </summary>
-    public class Circle : Shape
-    {
-
     }
 }
