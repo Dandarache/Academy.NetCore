@@ -9,11 +9,50 @@ namespace Academy.ConsoleApp.Demo
     {
         public void Run()
         {
-            //Demo1();
+            while (true)
+            {
+                Console.WriteLine("Enter file name:");
+                string fileName = Console.ReadLine();
+
+                Console.WriteLine("Enter text that should be written to text file:");
+                string fileInputText = Console.ReadLine();
+
+                try
+                {
+                    using (StreamWriter file = File.CreateText(fileName))
+                    {
+                        file.Write(fileInputText);
+                        break;
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    Console.WriteLine("You're not authorized to create this file");
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Console.WriteLine("Directory not found");
+                }
+                catch (IOException)
+                {
+                    Console.WriteLine("Input output exception");
+                }
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("The filename is not valid");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Something strange happened");
+                }
+            }
+            
+            
+            //Demo3();
 
             //Demo2();
-
-            //Demo3();
+            
+            //Demo1();
         }
 
         /// <summary>
