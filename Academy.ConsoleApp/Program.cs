@@ -38,7 +38,8 @@ namespace Academy.ConsoleApp
             //new ClassesDemo1().Run();
             //new EnumDemo().Run();
 
-            new InheritanceDemo1().Run();
+            //new InheritanceDemo1().Run();
+            new InheritanceExercise().Run();
         }
     }
 }
