@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Academy.ConsoleApp.Demo
+namespace Academy.ConsoleApp.Classes.Shapes
 {
     /// <summary>
     /// Base class for all shapes in this exercise.

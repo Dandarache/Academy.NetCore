@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Academy.ConsoleApp", "Acade
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Academy.Business", "Academy.Business\Academy.Business.csproj", "{25E30574-4FCB-4DF9-98C9-C663529AE56D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyTests", "AcademyTests\AcademyTests.csproj", "{6C75B3C9-B173-4B7C-B1F1-2D57F02940DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{25E30574-4FCB-4DF9-98C9-C663529AE56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25E30574-4FCB-4DF9-98C9-C663529AE56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25E30574-4FCB-4DF9-98C9-C663529AE56D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C75B3C9-B173-4B7C-B1F1-2D57F02940DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C75B3C9-B173-4B7C-B1F1-2D57F02940DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C75B3C9-B173-4B7C-B1F1-2D57F02940DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C75B3C9-B173-4B7C-B1F1-2D57F02940DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

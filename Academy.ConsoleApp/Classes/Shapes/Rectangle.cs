@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Academy.ConsoleApp.Demo
+namespace Academy.ConsoleApp.Classes.Shapes
 {
     /// <summary>
     /// Class definition for rectangle.
