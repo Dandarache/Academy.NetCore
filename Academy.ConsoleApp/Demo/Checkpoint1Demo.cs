@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Academy.ConsoleApp.Demo
 {
-    public class Checkpoint_1
+    public class Checkpoint1Demo
     {
         public void Run()
         {

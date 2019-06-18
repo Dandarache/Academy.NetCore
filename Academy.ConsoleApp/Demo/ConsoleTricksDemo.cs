@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Academy.ConsoleApp.Demo
 {
-    public class ConsoleTricks
+    public class ConsoleTricksDemo
     {
         const string folderPath = @"..\..\..\OutputData\";
 
         private FileInfo filePath;
         private StreamWriter streamWriter;
 
-        public ConsoleTricks()
+        public ConsoleTricksDemo()
         {
             filePath = 
                 new FileInfo($"{folderPath}ConsoleOuput{DateTime.Now.ToString("yyyyMMddHHmm")}.txt");
@@ -21,7 +21,7 @@ namespace Academy.ConsoleApp.Demo
             streamWriter.AutoFlush = true; 
         }
 
-        ~ConsoleTricks()
+        ~ConsoleTricksDemo()
         {
             streamWriter.Close();
         }

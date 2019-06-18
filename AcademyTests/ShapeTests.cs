@@ -21,7 +21,7 @@ namespace AcademyTests
         }
 
         [TestMethod]
-        public void test_that_circle_area_is_equal()
+        public void test_that_circle_area_is_calculated_correctly()
         {
             Circle circle = new Circle(4.53f);
 
@@ -32,14 +32,11 @@ namespace AcademyTests
         }
 
         [TestMethod]
-        public void test_that_turbo_circle_is_of_type_shape()
+        public void test_that_turbo_circle_is_not_of_type_shape()
         {
             TurboCircle circle = new TurboCircle(4.53f);
-            //bool isShape = circle is Shape;
 
             Assert.IsNotInstanceOfType(circle, typeof(Shape));
-
-            //Assert.IsTrue(isShape);
         }
     }
 }

@@ -22,6 +22,10 @@ namespace AcademyTests
             Assert.IsTrue(result);
         }
 
+        /// <summary>
+        /// Use the DataRow attribute to test several zipcodes using the zipcode validator.
+        /// </summary>
+        /// <param name="zipcodeString"></param>
         [DataRow("780 68")]
         [DataRow("784 32")]
         [DataRow("72592")]

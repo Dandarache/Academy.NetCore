@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Academy.ConsoleApp.Demo
 {
-    public class FizzBuzz
+    public class FizzBuzzDemo
     {
         public void Run()
         {

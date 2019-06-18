@@ -6,11 +6,9 @@ namespace AcademyTests
     [TestClass]
     public class CalculatorTests
     {
-        //[TestMethod]
-        //public void myTest()
-        //{
-        //}
-
+        /// <summary>
+        /// This method will test the add numbers method in calculator.
+        /// </summary>
         [TestMethod]
         public void calculator_add_numbers_and_check_sum()
         {
@@ -54,7 +52,6 @@ namespace AcademyTests
             Assert.AreEqual(z, expectedSum);
         }
 
-
         [TestMethod]
         public void caclulate_number_with_modulus()
         {
@@ -68,7 +65,5 @@ namespace AcademyTests
 
             Assert.AreEqual(z, expectedSum);
         }
-
-
     }
 }
