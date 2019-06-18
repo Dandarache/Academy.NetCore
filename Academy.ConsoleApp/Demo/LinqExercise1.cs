@@ -10,7 +10,7 @@ namespace Academy.ConsoleApp.Demo
     {
         public void Run()
         {
-            string filePath = @"C:\Users\danja\source\repos\Academy\ConsoleApp1\ExternalData\PersonShort.csv";
+            string filePath = @"..\..\..\ExternalData\PersonShort.csv";
 
             List<string> list = CreateListOfNames(filePath);
 
