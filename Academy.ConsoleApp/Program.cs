@@ -41,7 +41,8 @@ namespace Academy.ConsoleApp
             //new InheritanceDemo1().Run();
             //new InheritanceExercise().Run();
 
-            new ExceptionsDemo().Run();
+            //new ExceptionsDemo().Run();
+            new ExceptionsDemo2().Run();
         }
     }
 }
