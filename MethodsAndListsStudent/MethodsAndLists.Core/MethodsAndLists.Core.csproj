@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="GuessingGame\**" />
+    <Compile Remove="X\**" />
+    <EmbeddedResource Remove="GuessingGame\**" />
+    <EmbeddedResource Remove="X\**" />
+    <None Remove="GuessingGame\**" />
+    <None Remove="X\**" />
+  </ItemGroup>
+
+</Project>
