@@ -15,35 +15,46 @@ namespace Academy.ConsoleApp.Demo
             List<Employee> employees =
                 GetEmployees();
 
-            DisplayHierarchy(employees);
+            //DisplayHierarchy(employees);
+
+            DisplayHierarchyRecursive(employees, 0, 0);
+
+        }
+
+        private void DisplayHierarchyRecursive(List<Employee> employees, int managerId, int level)
+        {
+            // Ge mig alla anställda som har ManagerId == managerId
+            List<Employee> currentEmployees =
+                employees
+                    .Where(a => a.ManagerId == managerId)
+                    .ToList();
+
+            level++;
+
+            foreach (var employee in currentEmployees)
+            {
+                string indentation = string.Empty;
+                for (int i = 0; i < level; i++)
+                {
+                    indentation += "---";
+                }
+
+                Console.WriteLine($"{indentation}[ {employee.FirstName} {employee.LastName}, {employee.EmployeeId}, {employee.ManagerId}, [{level}]");
+
+                DisplayHierarchyRecursive(employees, employee.EmployeeId, level);
+            }
         }
 
         private void DisplayHierarchy(List<Employee> employees)
         {
-            DisplayEmployeesRecursive(employees, 0, -1);
+            DisplayEmployees(employees);
         }
 
-        private void DisplayEmployeesRecursive(List<Employee> employees, int managerId, int level)
+        private void DisplayEmployees(List<Employee> employees)
         {
-            level++;
-
-            List<Employee> currentEmployees =
-                employees
-                    .Where(a => a.ManagerId == managerId)
-                    .OrderBy(a => a.LastName)
-                    .ToList();
-
-            foreach (var employee in currentEmployees)
+            foreach (var employee in employees)
             {
-                string employeeString = $" {employee.FirstName} {employee.LastName}, Employee Id: {employee.EmployeeId}, Manager Id: {employee.ManagerId}";
-                for (int i = 0; i < level; i++)
-                {
-                    employeeString = $"---{employeeString}";
-                }
-
-                Console.WriteLine(employeeString);
-
-                DisplayEmployeesRecursive(employees, employee.EmployeeId, level);
+                Console.WriteLine($"{employee.FirstName} {employee.LastName}, {employee.EmployeeId}, {employee.ManagerId}");
             }
         }
 

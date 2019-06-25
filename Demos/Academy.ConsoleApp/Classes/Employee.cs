@@ -15,8 +15,8 @@ namespace Academy.ConsoleApp.Classes
             int age, 
             DateTime birthdate, 
             GenderType gender, 
-            int employeeId, int 
-            managerId
+            int employeeId, 
+            int managerId
             ) : 
             base(
                 firstName, 
