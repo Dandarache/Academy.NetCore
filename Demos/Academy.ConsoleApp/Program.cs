@@ -48,7 +48,9 @@ namespace Academy.ConsoleApp
             //new DelegateDemo().Run();
             //new EventsDemo2().Run();
 
-            new RecursionDemo().Run();
+            //new RecursionDemo().Run();
+
+            new InterfacesDemo().Run();
         }
     }
 }
