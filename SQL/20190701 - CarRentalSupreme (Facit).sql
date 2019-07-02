@@ -179,6 +179,7 @@ GO
 -- Stored procedures
 -------------------------------------
 
+-- CRUD for Car
 CREATE PROCEDURE usp_CreateCar(
 	@ColorId int,
 	@SizeId int,
@@ -187,38 +188,131 @@ CREATE PROCEDURE usp_CreateCar(
 )
 AS
 BEGIN
-	INSERT CAR (ColorId, BrandId, SizeId, LicensePlate)
+	INSERT Car (
+		ColorId, 
+		BrandId, 
+		SizeId, 
+		LicensePlate
+		)
 	VALUES (
 		@ColorId, 
 		@BrandId,
 		@SizeId,
 		@LicensePlate
 		)
+
+	SELECT SCOPE_IDENTITY()
 END
 GO
 
--- Create booking
-CREATE PROCEDURE usp_CreateBooking(
-	@CarId int,
-	@FromDate datetime,
-	@ToDate datetime,
-
-	@FirstName NVARCHAR(50),
-	@LastName NVARCHAR(50),
-	@SocialSecurityNumber NVARCHAR(50),
-	@Email NVARCHAR(100),
-
-	@PaymentMethod int,
-	@PaymentInvoiceAddressStreet NVARCHAR(50),
-	@PaymentInvoiceAddressCity NVARCHAR(50),
-	@PaymentInvoiceAddressZipCode NVARCHAR(50),
-	@PaymentInvoiceAddressName NVARCHAR(50)
+CREATE PROCEDURE usp_GetCar(
+	@CarId int
 )
 AS
 BEGIN
-	SELECT * FROM Car
-	--INSERT ...
+	SELECT * 
+	  FROM Car
+     WHERE Id = @CarId
 END
+GO
+
+CREATE PROCEDURE usp_UpdateCar(
+	@CarId int,
+	@ColorId int,
+	@SizeId int,
+	@BrandId int,
+	@LicensePlate nvarchar(7)
+)
+AS
+BEGIN
+	UPDATE Car 
+	   SET ColorId = @ColorId,
+	       BrandId = @BrandId,
+		   SizeId = @SizeId,
+		   LicensePlate = @LicensePlate
+     WHERE Id = @CarId
+END
+GO
+
+CREATE PROCEDURE usp_DeleteCar(
+	@CarId int
+)
+AS
+BEGIN
+	DELETE Car 
+	 WHERE Id = @CarId
+END
+GO
+
+-- CRUD for Booking
+CREATE PROCEDURE usp_CreateBooking(
+	@CarId int,
+	@CustomerId int,
+	@DriverId int,
+	@FromDate datetime,
+	@ToDate datetime
+)
+AS
+BEGIN
+	INSERT Booking(
+		CarId,
+		CustomerId,
+		DriverId,
+		FromDate,
+		ToDate
+	)
+	VALUES (
+		@CarId,
+		@CustomerId,
+		@DriverId,
+		@FromDate,
+		@ToDate
+		)
+
+	SELECT SCOPE_IDENTITY()
+END
+GO
+
+CREATE PROCEDURE usp_GetBooking(
+	@BookingId int
+)
+AS
+BEGIN
+	SELECT * 
+	  FROM Booking
+	 WHERE Id = @BookingId
+END
+GO
+
+CREATE PROCEDURE usp_UpdateBooking(
+	@BookingId int,
+	@CarId int,
+	@CustomerId int,
+	@DriverId int,
+	@FromDate datetime,
+	@ToDate datetime
+)
+AS
+BEGIN
+	UPDATE Booking 
+	   SET CarId = @CarId,
+		   CustomerId = @CustomerId,
+		   DriverId = @DriverId,
+		   FromDate = @FromDate,
+		   ToDate = @ToDate
+     WHERE Id = @BookingId
+END
+GO
+
+CREATE PROCEDURE usp_DeleteBooking(
+	@BookingId int
+)
+AS
+BEGIN
+	DELETE Booking 
+	 WHERE Id = @BookingId
+END
+GO
 
 -------------------------------------
 -- Execute stored procedure
