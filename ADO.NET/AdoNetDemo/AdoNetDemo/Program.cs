@@ -6,9 +6,15 @@ namespace AdoNetDemo
 {
     class Program
     {
+        const string CONNECTION_STRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=Chinook;Integrated Security=True";
+
         static void Main(string[] args)
         {
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Chinook;Integrated Security=True";
+
+            //string CONNECTION_STRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=Chinook;Integrated Security=True";
+            //SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING);
+            //sqlConnection.Open();
+
 
             // ------------------------------------------------------------------
 
@@ -91,39 +97,89 @@ namespace AdoNetDemo
 
             // ------------------------------------------------------------------
 
-
-
-            // SQL INJECTION
-            string myId = "125; CREATE TABLE Foo ( Id int IDENTITY NOT NULL PRIMARY KEY )";
-            //string myId = "125 OR 1=1";
+            //// SQL INJECTION
+            ////string myId = "125; CREATE TABLE Foo ( Id int IDENTITY NOT NULL PRIMARY KEY )";
+            ////string myId = "125 OR 1=1";
             //string myId = "125";
-            // ' OR 1=1;
+            //// ' OR 1=1;
 
 
-            GetArtist(connectionString, myId);
+            ////GetArtist(sqlConnection, myId);
+            ////GetArtist(sqlConnection, myId);
 
-            // SELECT * FROM Artist WHERE ArtistId = 125 OR 1=1
+            ////GetArtist(connectionstring, myId);
+
+
+            //GetArtist(myId);
+            //GetArtist(myId);
+
+            //// SELECT * FROM Artist WHERE ArtistId = 125 OR 1=1
+
+
+            // ------------------------------------------------------------------
+
+            Artist artist = GetArtist("124");
+
+            Console.WriteLine($"{artist.ArtistName}");
 
 
         }
 
-        private static void GetArtist(string connectionString, string myId)
+        ////private static void GetArtist(string connectionString, string myId)
+        ////private static void GetArtist(SqlConnection sqlConnection, string myId)
+        //private static void GetArtist(string myId)
+        //{
+        //    //using (sqlConnection)
+        //    using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
+        //    {
+        //        sqlConnection.Open();
+
+        //        string sqlString = "SELECT * FROM Artist WHERE ArtistId = @ArtistId";
+        //        //string sqlString = "SELECT * FROM Artist WHERE ArtistId = " + myId;
+
+        //        SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
+        //        sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", myId));
+
+        //        var reader = sqlCommand.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            Console.WriteLine($"Artist: {reader[1]}");
+        //        }
+
+        //    } // sqlConnection.Dispose();
+        //}
+
+        // ------------------------------------------------------------------
+
+
+
+
+
+        public static Artist GetArtist(string artistId)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            Artist artist;
+            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
             {
                 sqlConnection.Open();
 
-                string sqlString = "SELECT * FROM Artist WHERE ArtistId = " + myId;
+                string sqlString = "SELECT * FROM Artist WHERE ArtistId = @ArtistId";
 
                 SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
+                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artistId));
 
                 var reader = sqlCommand.ExecuteReader();
-                while (reader.Read())
+                reader.Read();
+
+                artist = new Artist
                 {
-                    Console.WriteLine($"Artist: {reader[1]}");
-                }
+                    ArtistId = int.Parse(reader[0].ToString()),
+                    ArtistName = reader[1].ToString()
+                };
 
             } // sqlConnection.Dispose();
+            return artist;
         }
+
+
     }
 }
