@@ -9,5 +9,10 @@ namespace AdoNetDemo
 
         public List<Album> Albums { get; set; }
 
+        public Artist()
+        {
+            Albums = new List<Album>();
+        }
+
     }
 }

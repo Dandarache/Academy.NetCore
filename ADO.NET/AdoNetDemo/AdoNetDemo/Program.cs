@@ -7,10 +7,12 @@ namespace AdoNetDemo
 {
     class Program
     {
-        const string CONNECTION_STRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=Chinook;Integrated Security=True";
-
         static void Main(string[] args)
         {
+            var chinookUserInterface = new ChinookUserInterface();
+
+            chinookUserInterface.Run();
+
             //string CONNECTION_STRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=Chinook;Integrated Security=True";
             //SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING);
             //sqlConnection.Open();
@@ -123,44 +125,9 @@ namespace AdoNetDemo
             //Console.WriteLine($"{artist.ArtistName}");
 
             // ------------------------------------------------------------------
-
-            DisplayMenu();
-
-
         }
 
-        private static void DisplayMenu()
-        {
-            while (true)
-            {
-                char pressedChar = Console.ReadKey().KeyChar;
-                switch (pressedChar)
-                {
-                    case '1':
-                        DisplayAllArtists();
-                        break;
-                    case '2':
-                    case '3':
-                    case '4':
-                    case 'q':
-                        break;
-                }
-            }
-        }
 
-        private static void DisplayAllArtists()
-        {
-            List<Artist> artists = GetAllArtist();
-
-            foreach (var artist in artists)
-            {
-                Console.WriteLine($"ID: {artist.ArtistId}, Artist Name: {artist.ArtistName}");
-                foreach (var album in artist.Albums)
-                {
-                    Console.WriteLine($"\t{album.AlbumTitle}");
-                }
-            }
-        }
 
         ////private static void GetArtist(string connectionString, string myId)
         ////private static void GetArtist(SqlConnection sqlConnection, string myId)
@@ -187,137 +154,6 @@ namespace AdoNetDemo
         //}
 
         // ------------------------------------------------------------------
-
-
-        public static int CreateArtist(string artistName)
-        {
-            int artistId;
-            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
-            {
-                sqlConnection.Open();
-
-                string sqlString = "INSERT Artist ([Name]) VALUES @ArtistName; SELECT @@IDENTITY";
-
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artistName));
-                artistId = (int)sqlCommand.ExecuteScalar();
-            }
-            return artistId;
-        }
-
-        public static List<Artist> GetAllArtist()
-        {
-            List<Artist> artists = new List<Artist>();
-
-            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
-            {
-                sqlConnection.Open();
-
-                string sqlString = "SELECT * FROM Artist";
-
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-
-                var reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Artist artist = new Artist
-                    {
-                        ArtistId = reader.GetInt32(0),
-                        ArtistName = reader.GetString(1)
-                    };
-
-                    artist.Albums = GetArtistAlbums(artist.ArtistId);
-
-                    artists.Add(artist);
-                }
-            }
-
-            return artists;
-        }
-
-        public static Artist GetArtist(int artistId)
-        {
-            Artist artist;
-            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
-            {
-                sqlConnection.Open();
-
-                string sqlString = "SELECT * FROM Artist WHERE ArtistId = @ArtistId";
-
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artistId));
-
-                var reader = sqlCommand.ExecuteReader();
-                reader.Read();
-
-                artist = new Artist
-                {
-                    ArtistId = int.Parse(reader[0].ToString()),
-                    ArtistName = reader[1].ToString()
-                };
-
-            } // sqlConnection.Dispose();
-            return artist;
-        }
-
-        public void UpdateArtist(int artistId, string artistName)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
-            {
-                sqlConnection.Open();
-
-                string sqlString = "UPDATE Artist SET [Name] = @ArtistName WHERE ArtistId = @ArtistId";
-
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artistId));
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artistName));
-                sqlCommand.ExecuteNonQuery();
-            }
-        }
-
-        public void DeleteArtist(int artistId)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
-            {
-                sqlConnection.Open();
-
-                SqlCommand sqlCommand = new SqlCommand("DELETE Artist WHERE ArtistId = @ArtistId", sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artistId));
-                sqlCommand.ExecuteNonQuery();
-            }
-        }
-
-
-        public static List<Album> GetArtistAlbums(int artistId)
-        {
-            List<Album> albums = new List<Album>();
-
-            using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
-            {
-                sqlConnection.Open();
-
-                string sqlString = "SELECT * FROM Album WHERE ArtistId = @ArtistId";
-
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artistId));
-                var reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Album album = new Album
-                    {
-                        AlbumId = reader.GetInt32(0),
-                        AlbumTitle = reader.GetString(1)
-
-                    };
-                    albums.Add(album);
-                }
-            }
-
-            return albums;
-        }
-
 
 
     }
