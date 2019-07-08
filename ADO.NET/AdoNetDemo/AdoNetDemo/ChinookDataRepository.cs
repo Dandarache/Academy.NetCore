@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -9,20 +10,51 @@ namespace AdoNetDemo
     {
         const string CONNECTION_STRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=Chinook;Integrated Security=True;MultipleActiveResultSets=true;";
 
-        public int CreateArtist(string artistName)
+        /// <summary>
+        /// This method will create an artist in the database using 
+        /// a stored procedure, and will return the id for the new artist using an output parameter.
+        /// -----------------------------------
+        /// CREATE PROCEDURE usp_CreateArtist (
+        ///     @ArtistName NVARCHAR(255), 
+        ///     @ArtistId int OUTPUT
+        /// )
+        /// AS
+        /// BEGIN
+        /// 	INSERT Artist (
+        /// 		[Name]
+        /// 	) 
+        /// 	VALUES (
+        /// 		@ArtistName
+        /// 	)
+        /// 		
+        /// SET @ArtistId = @@IDENTITY
+        /// 
+        /// END
+        /// GO
+        /// -----------------------------------
+        /// </summary>
+        /// <param name="artistName">The name of the new artist.</param>
+        /// <returns>The id of the new artist.</returns>
+        public int CreateArtist(Artist artist)
         {
-            int artistId;
+            SqlParameter idParameter = new SqlParameter("@ArtistId", System.Data.DbType.Int32);
             using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
             {
                 sqlConnection.Open();
 
-                string sqlString = "INSERT Artist ([Name]) VALUES @ArtistName; SELECT @@IDENTITY";
+                string sqlString = "usp_CreateArtist @ArtistName, @ArtistId";
 
                 SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artistName));
-                artistId = (int)sqlCommand.ExecuteScalar();
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artist.ArtistName));
+
+                idParameter.Direction = System.Data.ParameterDirection.Output;
+                sqlCommand.Parameters.Add(idParameter);
+                    
+                sqlCommand.ExecuteNonQuery();
             }
-            return artistId;
+            return (int)idParameter.Value;
         }
 
         public List<Artist> GetAllArtist(bool loadAllData)

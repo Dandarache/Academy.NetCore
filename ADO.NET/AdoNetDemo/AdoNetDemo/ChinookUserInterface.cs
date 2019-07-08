@@ -34,6 +34,7 @@ namespace AdoNetDemo
                 switch (pressedChar)
                 {
                     case '1':
+                        DisplayCreateArtistDialog();
                         break;
                     case '2':
                         DisplayAllArtists(false);
@@ -52,6 +53,25 @@ namespace AdoNetDemo
 
                 Console.Clear();
             }
+        }
+
+        private void DisplayCreateArtistDialog()
+        {
+            Console.Clear();
+            Console.WriteLine("Ange namn på artisten du vill skapa:");
+            var userInput = Console.ReadLine();
+
+            var artist = new Artist
+            {
+                ArtistName = userInput
+            };
+
+            int newArtistId =
+                chinookDataRepository.CreateArtist(artist);
+
+            Console.WriteLine($"Artisten skapades med ID: {newArtistId}");
+
+            ExitDialog();
         }
 
         private void DisplayDeleteDialog()
