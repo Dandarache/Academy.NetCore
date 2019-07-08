@@ -44,14 +44,16 @@ namespace AdoNetDemo
 
                 string sqlString = "usp_CreateArtist";
 
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.CommandType = CommandType.StoredProcedure;
+                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artist.ArtistName));
 
                 idParameter.Direction = System.Data.ParameterDirection.Output;
                 sqlCommand.Parameters.Add(idParameter);
-                    
+
                 sqlCommand.ExecuteNonQuery();
             }
             return (int)idParameter.Value;
@@ -143,19 +145,65 @@ namespace AdoNetDemo
             return artist;
         }
 
-        public void UpdateArtist(int artistId, string artistName)
+
+        /// <summary>
+        /// Updates an artist in the Chinook database.
+        /// -----------------------------------
+        /// BEGIN TRANSACTION
+        /// GO
+        /// ALTER TABLE dbo.Artist ADD
+        /// 	Updated datetime NULL
+        /// GO
+        /// ALTER TABLE dbo.Artist ADD CONSTRAINT
+        /// 	DF_Artist_Updated DEFAULT getdate() FOR Updated
+        /// GO
+        /// ALTER TABLE dbo.Artist SET (LOCK_ESCALATION = TABLE)
+        /// GO
+        /// COMMIT
+        /// GO
+        /// 
+        /// -----------------------------------
+        /// 
+        /// CREATE PROCEDURE usp_UpdateArtist (
+        /// 	@ArtistName NVARCHAR(255),
+        /// 	@ArtistId INT,
+        /// 	@Updated DATETIME OUTPUT
+        /// )
+        /// AS
+        /// BEGIN
+        /// 	SET @Updated = GETDATE()
+        /// 
+        /// 	UPDATE Artist 
+        /// 	   SET [Name] = @ArtistName,
+        /// 		   Updated = @Updated 
+        /// 	WHERE 
+        /// 		ArtistId = @ArtistId
+        /// END            
+        /// -----------------------------------
+        /// </summary>
+        /// <param name="artist">The artist to be updated.</param>
+        /// <returns>The date the artist was updated.</returns>
+        public DateTime UpdateArtist(Artist artist)
         {
+            SqlParameter updatedDate = new SqlParameter("@Updated", SqlDbType.DateTime);
             using (SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING))
             {
                 sqlConnection.Open();
 
-                string sqlString = "UPDATE Artist SET [Name] = @ArtistName WHERE ArtistId = @ArtistId";
+                SqlCommand sqlCommand = new SqlCommand("usp_UpdateArtist", sqlConnection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
-                SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artistId));
-                sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artistName));
+                sqlCommand.Parameters.Add(new SqlParameter("@ArtistId", artist.ArtistId));
+                sqlCommand.Parameters.Add(new SqlParameter("@ArtistName", artist.ArtistName));
+
+                updatedDate.Direction = ParameterDirection.Output;
+                sqlCommand.Parameters.Add(updatedDate);
+
                 sqlCommand.ExecuteNonQuery();
             }
+            return (DateTime)updatedDate.Value;
         }
 
         public string DeleteArtist(int artistId)

@@ -43,6 +43,7 @@ namespace AdoNetDemo
                         DisplayAllArtists(true);
                         break;
                     case '4':
+                        DisplayUpdateArtistDialog();
                         break;
                     case '5':
                         DisplayDeleteDialog();
@@ -53,6 +54,30 @@ namespace AdoNetDemo
 
                 Console.Clear();
             }
+        }
+
+        private void DisplayUpdateArtistDialog()
+        {
+            Console.Clear();
+            Console.WriteLine("Ange ID på artisten du vill uppdatera:");
+            var artistIdString = Console.ReadLine();
+            int.TryParse(artistIdString, out int artistId);
+
+            Console.WriteLine("Ange det nya namnet på artisten du vill uppdatera:");
+            var newArtistNameString = Console.ReadLine();
+
+            var artist = new Artist
+            {
+                ArtistName = newArtistNameString,
+                ArtistId = artistId
+            };
+
+            DateTime artistUpdatedDate =
+                chinookDataRepository.UpdateArtist(artist);
+
+            Console.WriteLine($"Artisten uppdaterades: {artistUpdatedDate}");
+
+            ExitDialog();
         }
 
         private void DisplayCreateArtistDialog()
