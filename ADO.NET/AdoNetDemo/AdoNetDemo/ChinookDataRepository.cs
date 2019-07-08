@@ -42,7 +42,7 @@ namespace AdoNetDemo
             {
                 sqlConnection.Open();
 
-                string sqlString = "usp_CreateArtist @ArtistName, @ArtistId";
+                string sqlString = "usp_CreateArtist";
 
                 SqlCommand sqlCommand = new SqlCommand(sqlString, sqlConnection);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
