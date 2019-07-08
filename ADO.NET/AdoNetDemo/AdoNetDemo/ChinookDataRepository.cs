@@ -141,7 +141,6 @@ namespace AdoNetDemo
                         $"DELETE PlaylistTrack WHERE TrackId IN (" +
                         $"  SELECT t.TrackId FROM Track t " +
                         $"      INNER JOIN Album a ON a.AlbumId = t.AlbumId " +
-                        $"      INNER JOIN InvoiceLine i ON i.TrackId = t.TrackId " +
                         $"  WHERE a.ArtistId = @ArtistId" +
                         $")", sqlConnection);
                     sqlCommandDeletePlaylistTrack.Parameters.Add(new SqlParameter("@ArtistId", artistId));
