@@ -68,8 +68,8 @@ namespace EntityFrameworkDemo
         /// </summary>
         public void ClearAndInitDatabase()
         {
-            _fruitContext.Database.EnsureDeleted();
-            _fruitContext.Database.EnsureCreated();
+            //_fruitContext.Database.EnsureDeleted();
+            //_fruitContext.Database.EnsureCreated();
 
             _fruitContext.FruitColors.Add(new FruitColor { Name = "Röd" });
             _fruitContext.FruitColors.Add(new FruitColor { Name = "Gul" });
