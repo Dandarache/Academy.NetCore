@@ -26,5 +26,8 @@ namespace EntityFrameworkDemo
 
         [NotMapped]
         public int DummyBusiness { get; set; }
+
+
+
     }
 }
