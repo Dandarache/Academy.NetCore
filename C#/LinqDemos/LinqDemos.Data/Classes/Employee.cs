@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EfSamurai.Test.Classes
+namespace LinqDemos.Data.Classes
 {
     public class Employee : Person
     {
@@ -28,6 +28,11 @@ namespace EfSamurai.Test.Classes
         {
             EmployeeId = employeeId;
             ManagerId = managerId;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.FirstName} {this.LastName}, Birthdate: {this.Birthdate}, {this.Gender}, Emp Id: {this.EmployeeId}, Mgr Id: {this.ManagerId}, HasPet: {this.HasPet}";
         }
     }
 }

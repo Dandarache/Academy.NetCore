@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EfSamurai.Test.Classes
+namespace LinqDemos.Data.Classes
 {
     public enum GenderType
     {
