@@ -13,6 +13,22 @@ namespace LinqDemos
 
         static void Main(string[] args)
         {
+            Person person = Person.Create(
+                "Dan",
+                "Jansson",
+                "Dandarache",
+                GenderType.Male,
+                new DateTime(1972,1,11),
+                "Hemgatan 1",
+                "123 45",
+                "Stadensborg",
+                "Sverige"
+                );
+
+            Console.WriteLine(person.ToString());
+
+
+
             // Create instance of the dog class
             Dog myDog1 = new Dog("Fluffy", "Lupus Voffus");
             // Instance properties
