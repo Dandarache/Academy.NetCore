@@ -109,6 +109,7 @@ function var4() {
 
 
 
+
     // Extra: ändra värdet på y till 2. Vad kommer svaret bli?
 }
 

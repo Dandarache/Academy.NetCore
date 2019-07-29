@@ -1,4 +1,6 @@
-﻿
+﻿arr1();
+
+
 function arr1() {
 
     /*
@@ -10,9 +12,22 @@ function arr1() {
         Vad händer om du försöker komma åt det fjärde elementet (som inte finns)?
     */
 
+    let cities = ["Stockholm", "Göteborg", "Borlänge", "New York"];
+
+    console.log(cities[0]);
+    console.log(cities[1]);
+    console.log(cities[2]);
+    console.log(cities[3]);
+    console.log(cities[4]);
 
     // Extra: skriv ut det andra elementet ("Göteborg") två gånger
+    console.log(cities[1] + cities[1]);
+
+    let gbg = cities[1];
+    console.log(gbg + gbg);
+
     // Extra: Skriv ut de två första elementen vid sidan av varandra ("StockholmGöteborg")
+    console.log(cities[0] + cities[1]);
 }
 
 function arr2() {
