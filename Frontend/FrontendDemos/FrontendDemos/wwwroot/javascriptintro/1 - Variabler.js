@@ -56,7 +56,7 @@ var1();
 
 function var1() {
     /* Skriv ut "Jag heter XXXX" i consolen */
-    console.log('Jag heter Oscar');
+    console.log('Jag heter Dan');
 
     // Extra: skriv flera meningar
 }
@@ -214,7 +214,7 @@ function var12() {
     Använd "isNaN" fär att kolla om x är ett icke-nummer. Sätt y till det värdet (y kommer få värdet true)
     Skriv ut y
     */
-    let x = parseInt('oscar', 10);
+    let x = parseInt('dan', 10);
     console.log(x); // "NaN"
 
     let y = isNaN(x);

@@ -1,4 +1,8 @@
-﻿
+﻿fun1();
+fun2();
+fun3();
+fun4();
+
 function fun1() {
 
     /*
@@ -35,10 +39,10 @@ function fun2() {
     /*
     Liknande som sist men gör en metod sayHiTo() som tar ett namn som inparameter.
 
-    Ex sayHiTo("Oscar") ska skriva ut:
+    Ex sayHiTo("Dan") ska skriva ut:
 
     --------
-    -------- VÄLKOMMEN OSCAR
+    -------- VÄLKOMMEN DAN
     --------
 
     */
@@ -50,7 +54,7 @@ function fun2() {
         console.log("");
     }
 
-    sayHiTo('Oscar');
+    sayHiTo('Dan');
     sayHiTo('Musse');
 }
 
