@@ -14,7 +14,7 @@
     */
 
     function superImportant(text) {
-        return null;
+        return `****** ${text.toUpperCase()} ******`;
     }
 
     let text = superImportant("Service now");
@@ -43,7 +43,11 @@ function funRet2() {
 
 
     function superImportant(text, upper) {
-        return null;
+        if (upper === true) {
+            return `****** ${text.toUpperCase()} ******`;
+        } else {
+            return `****** ${text} ******`;
+        }
     }
 
     console.log(superImportant("Service now", true));
@@ -67,7 +71,7 @@ function funRet3() {
     */
 
     function laggTillTusen(x) {
-        return null;
+        return x + 1000;
     }
 
     let mittNummer = laggTillTusen(18);
@@ -90,7 +94,7 @@ function funRet4() {
     */
 
     function addNumbers(a, b) {
-        return null;
+        return a + b;
     }
 
     let summa = addNumbers(3, 4);
@@ -117,7 +121,10 @@ function funRet5() {
     */
 
     function isMyndig(age) {
-        return null;
+        if (age >= 18)
+            return true;
+        else
+            return false;
     }
 
     // Alternativt
@@ -159,7 +166,11 @@ function funRetExtra1() {
     */
 
     function timeUntilRetirement(age) {
-        return null;
+        if (age > 65) {
+            return 0;
+        } else {
+            return 65 - age;
+        }
     }
 
     console.log(`Antal år till pension: ${timeUntilRetirement(43)}`);
@@ -194,11 +205,21 @@ function funRetExtra2() {
     */
 
     function beräknaMoms(typeOfProduct) {
-        return null;
+        let vatPercentage = 0.25;
+        let twelvePercent = ["livsmedel", "restaurangbesök", "hotell", "konstverk"];
+        let sixPercent = ["tidning", "bok", "taxi", "buss", "flyg", "tåg", "konsert"];
+        if (twelvePercent.includes(typeOfProduct))
+            vatPercentage = 0.12;
+
+        if (sixPercent.includes(typeOfProduct))
+            vatPercentage = 0.06;
+
+        return vatPercentage;
     }
 
     function skrivUtProduktInfo(typeOfProduct, price) {
-        return null;
+        let vat = beräknaMoms(typeOfProduct) * price;
+        console.log(`Momsen för en/ett ${typeOfProduct} som kostar ${price}kr är ${vat}kr`)
     }
 
     skrivUtProduktInfo("tidning", 1000);

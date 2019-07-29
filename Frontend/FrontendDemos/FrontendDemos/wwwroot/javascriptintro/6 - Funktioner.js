@@ -20,6 +20,10 @@ function fun1() {
     */
 
     function sayHi() {
+        console.log("--------");
+        console.log("-------- VÄLKOMMEN");
+        console.log("--------");
+        console.log("");
     }
 
     sayHi();
@@ -31,17 +35,23 @@ function fun2() {
     /*
     Liknande som sist men gör en metod sayHiTo() som tar ett namn som inparameter.
 
-    Ex sayHiTo("Dan") ska skriva ut:
+    Ex sayHiTo("Oscar") ska skriva ut:
 
     --------
-    -------- VÄLKOMMEN DAN
+    -------- VÄLKOMMEN OSCAR
     --------
 
     */
 
+    function sayHiTo(ettnamn) {
+        console.log("--------");
+        console.log(`-------- VÄLKOMMEN ${ettnamn.toUpperCase()}`);
+        console.log("--------");
+        console.log("");
+    }
 
-    sayHiTo('Dan');
-    sayHiTo('Laban');
+    sayHiTo('Oscar');
+    sayHiTo('Musse');
 }
 
 function fun3() {
@@ -61,6 +71,11 @@ function fun3() {
     */
 
     function myndig(name, age) {
+        if (age >= 18) {
+            console.log(`${name} är myndig`);
+        } else {
+            console.log(`Obs! ${name} är inte myndig!`);
+        }
     }
 
     myndig("Peter", 16);
@@ -84,6 +99,8 @@ function fun4() {
     */
 
     function skrivUtMoms(price) {
+        let vat = price * 0.25;
+        console.log(`Momsen för varan är ${vat}kr`);
     }
 
     skrivUtMoms(1000);
@@ -115,6 +132,12 @@ function extraFun2() {
     */
 
     function recept(recipeName, ingredients) {
+        console.log(`FÖR ATT GÖRA ${recipeName.toUpperCase()} BEHÖVS:`);
+        for (let item of ingredients) {
+            console.log(`* ${item.toUpperCase()}`);
+        };
+
+        console.log("");
     }
 
     recept("Äpplekaka", ["Äpple", "Mjöl", "Kanel"]);
@@ -149,6 +172,17 @@ function extraFun3() {
     */
 
     function skrivUtMoms(typeOfProduct, price) {
+        let vatPercentage = 0.25;
+        let twelvePercent = ["livsmedel", "restaurangbesök", "hotell", "konstverk"];
+        let sixPercent = ["tidning", "bok", "taxi", "buss", "flyg", "tåg", "konsert"];
+        if (twelvePercent.includes(typeOfProduct))
+            vatPercentage = 0.12;
+
+        if (sixPercent.includes(typeOfProduct))
+            vatPercentage = 0.06;
+
+        let vat = price * vatPercentage;
+        console.log(`Momsen för en/ett ${typeOfProduct} som kostar ${price}kr är ${vat}kr`)
     }
 
     skrivUtMoms("tidning", 1000);
@@ -184,6 +218,17 @@ function extraFun4() {
     */
 
     function skrivUtMoms(prefix, typeOfProduct, price) {
+        let vatPercentage = 0.25;
+        let twelvePercent = ["livsmedel", "restaurangbesök", "hotell", "konstverk"];
+        let sixPercent = ["tidning", "bok", "taxi", "buss", "flyg", "tåg", "konsert"];
+        if (twelvePercent.includes(typeOfProduct))
+            vatPercentage = 0.12;
+
+        if (sixPercent.includes(typeOfProduct))
+            vatPercentage = 0.06;
+
+        let vat = price * vatPercentage;
+        console.log(`Momsen för ${prefix} ${typeOfProduct} som kostar ${price}kr är ${vat}kr`)
     }
 
     skrivUtMoms("en", "tidning", 1000);

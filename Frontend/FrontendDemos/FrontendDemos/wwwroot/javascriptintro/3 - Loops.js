@@ -4,8 +4,9 @@ function loop1() {
     /*
         Använd en for-loop för att skriva ut alla siffror mellan 5 och 18
     */
-
-
+    for (let i = 5; i <= 18; i++) {
+        console.log(i);
+    }
 }
 
 function loop2() {
@@ -13,8 +14,9 @@ function loop2() {
     /*
         Använd en for-loop för att skriva ut alla siffror mellan 0 och 9
     */
-
-
+    for (let i = 0; i < 10; i++) {
+        console.log(i);
+    }
 }
 
 function loop3() {
@@ -27,9 +29,9 @@ function loop3() {
             "Siffran 7 är tjusig"
             "Siffran 8 är tjusig"
     */
-
-
-
+    for (let i = 4; i <= 8; i++) {
+        console.log(`Siffran ${i} är tjusig`);
+    }
     /* Extra: använd en forloop för att skriva ut:
         "4:a"
         "5:a"
@@ -44,8 +46,11 @@ function loop4() {
     /*
         Lös föregående uppgift men använd en while-loop
     */
-
-
+    let i = 4;
+    while (i <= 8) {
+        console.log(`Siffran ${i} är tjusig`);
+        i++;
+    }
 }
 
 function loop5() {
@@ -54,9 +59,10 @@ function loop5() {
 	    Skapa en array "importantYears" med årtalen 1492, 1789, 1859, 1929
         Använd "for of" för att skriva ut alla årtal
     */
-
-
-
+    const importantYears = [1492, 1789, 1859, 1929];
+    for (const year of importantYears) { // alternativt "let"
+        console.log(year);
+    }
     /*
     Extra: 
 
@@ -77,8 +83,12 @@ function loop6() {
 	    3) 1859
 	    4) 1929
     */
-
-
+    let rownumber = 1;
+    const importantYears = [1492, 1789, 1859, 1929];
+    for (const year of importantYears) {
+        console.log(`${rownumber}) ${year}`);
+        rownumber++;
+    }
 }
 
 function loop7() {
@@ -88,7 +98,13 @@ function loop7() {
 	    1) 1492
 	    2) 1789
     */
-
-
-
+    let rownumber = 1;
+    const importantYears = [1492, 1789, 1859, 1929];
+    for (const year of importantYears) {
+        if (year > 1800) {
+            break;
+        }
+        console.log(`${rownumber}) ${year}`);
+        rownumber++;
+    }
 }

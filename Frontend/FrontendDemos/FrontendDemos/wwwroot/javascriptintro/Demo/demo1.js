@@ -1,47 +1,46 @@
 
 // console.log + fel
-console.log('Tjena!');
 
+console.log("hej")
+console.Log("hej") // ger felmeddelande
 
 // sätt och skriv ut varibel
-//let name = 'Dan\'s Jansson';
-//let name = "Dan's Jansson";
-//let name = 'Dan "ironman" Jansson';
-let name = "Dan \"ironman\" Jansson";
-console.log('Hejsan svejsan ' + name);
 
+let name="Lisa"
+console.log("Hej " +name)
 
 // summera två tal. fast strängar. parseInt
-let a = 5;
-let b = "15";
-console.log(a + b);
-console.log(a + parseInt(b));
 
+let x = 2;
+let y = "3"
+console.log(x+y)
 
+let x = 2;
+let y = parseInt("3")
+console.log(x+y)
+
+ 
 // snefnutt
-let name2 = `Dan Jansson`;
-console.log('Hejsan svejsan ' + name2);
 
-//let s = "Ditt " + name2 + " namn är " + name2;
-let s = `Ditt ${name2} namn är ${name2}`
-console.log(s);
-//alert(s);
-//confirm(s);
+let name="Kalle"
 
+let s = "Ditt " + name + " namn är " + name
+let s = `Ditt ${name} namn är ${name}`
 
 // typeof 
-let a1 = 1;
-let b1 = "2";
-let c1 = true;
-let d1 = function () { alert('hej!') };
-let e1 = [4, 5, 6];
-let f1 = { firstName: "Lisa" };
 
-//a = "KALLE"
+let a = 1
+let b = "2"
+let c = true
+let d = function(){alert('hej!')}
+let e = [4,5,6]
+let f = {firstName:"Lisa"}
 
-console.log(typeof a1);
-console.log(typeof b1);
-console.log(typeof c1);
-console.log(typeof d1);
-console.log(typeof e1);
-console.log(typeof f1);
+a = "KALLE"
+
+console.log(typeof a)
+console.log(typeof b)
+console.log(typeof c)
+console.log(typeof d)
+console.log(typeof e)
+console.log(typeof f)

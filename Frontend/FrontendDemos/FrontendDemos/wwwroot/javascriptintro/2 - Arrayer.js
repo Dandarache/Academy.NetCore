@@ -1,6 +1,4 @@
-﻿arr1();
-
-
+﻿
 function arr1() {
 
     /*
@@ -12,22 +10,15 @@ function arr1() {
         Vad händer om du försöker komma åt det fjärde elementet (som inte finns)?
     */
 
-    let cities = ["Stockholm", "Göteborg", "Borlänge", "New York"];
+    let cities = ['Stockholm', 'Göteborg', 'New York'];
 
     console.log(cities[0]);
     console.log(cities[1]);
     console.log(cities[2]);
-    console.log(cities[3]);
-    console.log(cities[4]);
+    console.log(cities[3]); // undefined
 
     // Extra: skriv ut det andra elementet ("Göteborg") två gånger
-    console.log(cities[1] + cities[1]);
-
-    let gbg = cities[1];
-    console.log(gbg + gbg);
-
     // Extra: Skriv ut de två första elementen vid sidan av varandra ("StockholmGöteborg")
-    console.log(cities[0] + cities[1]);
 }
 
 function arr2() {
@@ -38,7 +29,9 @@ function arr2() {
 	    Skriv ut det fjärde elementet i "cities" ("Krakow")
     */
 
-
+    let cities = ['Stockholm', 'Göteborg', 'New York'];
+    cities.push('Krakow');
+    console.log(cities[3]);
 
     // Extra: använd push för att lägga till två till städer. Skriv ut den sista staden i listan.
 }
@@ -52,8 +45,11 @@ function arr3() {
 	    Skriv ut "Det finns XXX städer i arrayen"
 	    Plocka ut den andra och fjärde staden i listan. Skriv ut "Mina favoritstäder är Göteborg och Krakow"
     */
-
-
+    let cities = ['Stockholm', 'Göteborg', 'New York'];
+    cities.push('Krakow');
+    cities.push('Berlin');
+    console.log(`Det finns ${cities.length} städer i arrayen`);
+    console.log(`Mina favoritstäder är ${cities[1]} och ${cities[3]}`);
 }
 
 function arr4() {
@@ -65,7 +61,11 @@ function arr4() {
 	    Skriv ut den poppade staden (New York)
 	    Använd cities.length för att plocka ut det sista elementet i listan (Göteborg)
     */
-
+    let cities = ['Stockholm', 'Göteborg', 'New York'];
+    let poppedCity = cities.pop();
+    console.log(cities.length); // 2
+    console.log(poppedCity); // New York
+    console.log(cities[cities.length - 1]); // Göteborg
 }
 
 function arr5() {
@@ -75,10 +75,12 @@ function arr5() {
 	    Skriv ut antalet nummer i listan (4)
 	    Skriv ut det tredje numret i listan (777)
     */
-
+    let numbers = [5, 66, 777, 12];
+    console.log(numbers.length);
+    console.log(numbers[2]);
 }
 
-// Extra
+// skippa
 function arr6() {
 
     /*
@@ -88,20 +90,25 @@ function arr6() {
 	    Skriv ut värdet av "numbers"
         Jämför de två resultaten
     */
-
+    let numbers = [5, 66, 777, 12];
+    numbers.sort();  
+    console.log(numbers);
+    numbers.sort((a, b) => a - b);
+    console.log(numbers);
 }
 
-// Extra
+// skippa
 function arr7() {
 
     /*
         Sortera listan baklänges
     */
     let numbers = [5, 66, 777, 12];
-
+    numbers.sort((a, b) => b - a);
+    console.log(numbers);
 }
 
-// Extra
+// skippa
 function arr8() {
 
     /*
@@ -109,6 +116,8 @@ function arr8() {
 	    Vänd på ordningen mha "reverse"
 	    Skriv ut arrayen ([ 12, 777, 66, 5 ])
     */
-
+    let numbers = [5, 66, 777, 12];
+    numbers.reverse();
+    console.log(numbers);
 
 }
