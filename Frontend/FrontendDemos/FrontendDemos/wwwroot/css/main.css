@@ -1,0 +1,28 @@
+﻿body {
+    /*background-color: maroon;*/
+    font-size: 14px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: maroon;
+}
+
+table {
+    border: dashed 1px black;
+}
+
+td {
+    border: solid 1px black;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: orange;
+        text-decoration: underline;
+    }
+
+    a:visited {
+        text-decoration: underline;
+    }
