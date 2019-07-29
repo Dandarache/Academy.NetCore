@@ -1,0 +1,38 @@
+﻿
+.dud-state {
+    display: inline-block;
+    width: 50px;
+}
+
+.dud-groupname, .dud-testname {
+    display: inline-block;
+}
+
+.dud-success, .dud-fail {
+    display: inline-block;
+    width:50px;
+}
+
+.dud-groupname {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dud-group {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #eee;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.dud-row {
+    margin: 5px 50px;
+}
+
+body {
+    font-size: 20px;
+    font-family:Arial;
+}
+
+

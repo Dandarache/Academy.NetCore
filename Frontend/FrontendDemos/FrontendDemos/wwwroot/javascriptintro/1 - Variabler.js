@@ -1,4 +1,9 @@
-﻿
+﻿let answer = window.confirm('Äta lunch?');
+console.log(answer);
+
+
+
+
 /* Visa uttryck först i Consolen (F12)
 
     3+4
@@ -53,6 +58,7 @@
 */
 
 var1();
+var2();
 
 function var1() {
     /* Skriv ut "Jag heter XXXX" i consolen */
@@ -66,7 +72,8 @@ function var2() {
     Skapa variabel och sätt det till 35. 
     Meddela värdet av siffran (med hjäp av "console.log")
     */
-
+    let a = 35;
+    console.log(a);
 
     // Extra: meddela talet plus 8
     // Extra: meddela talet gånger 123
