@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Academy TRV, JavaScript - DOM</title>
+    <link href="css/plain.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1 id="mainHeading">Rubrik</h1>
+
+    <p id="preamble">Halló <b>heimur!</b></p>
+
+    <button id="knapp1" onclick="showAlertDialog();">Alert-ruta med onclick</button>
+    <button id="knapp2">Alert-ruta med addEventListener</button>
+    <button id="knapp3">Skriv i consolen</button>
+    <button id="knapp4">Skriv i consolen - Alternativ version</button>
+    <button id="knapp5">Ändra rubrikens text</button>
+    <button id="knapp6">Ändra färg på rubriken</button>
+    <button id="knapp7">Ändra ingressen (text)</button>
+    <button id="knapp8">Ändra ingressen (HTML)</button>
+
+    <script>
+
+        // Övning 1
+        function showAlertDialog() {
+            console.log('showAlertDialog() clicked.');
+            alert('showAlertDialog() clicked.');
+        }
+
+        // -------------
+
+        // Övning 2
+        // Skaffa en referens till elementet som har id 'knapp2'
+        let knapp2 = document.getElementById('knapp2');
+
+        // Tala om för DOM att du vill koppla eventet/händelsen 'click'
+        // till koden nedan, dvs när click eventet inträffar skall koden
+        // nedan köras.
+        knapp2.addEventListener('click', () => {
+            console.log('knapp 2 clicked');
+            alert('knapp 2 clicked');
+        });
+
+        // -------------
+
+        // Övning 3
+        let knapp3 = document.getElementById('knapp3');
+        knapp3.addEventListener('click', () => {
+            console.log('Hello Peter what\'s happening.');
+            console.log('I\'m gonna need you to go ahead and come in tomorrow');
+        });
+
+        // -------------
+
+        // Övning 4
+        function writeToConsole() {
+            console.log('ALTERNATIVE: Hello Peter what\'s happening.');
+            console.log('ALTERNATIVE: I\'m gonna need you to go ahead and come in tomorrow');
+        }
+
+        let knapp4 = document.getElementById('knapp4');
+        knapp4.addEventListener('click', writeToConsole)
+
+        // -------------
+
+        // Övning 5
+        // Om användaren trycker på knapp5 => ändra rubriken till "Ny rubrik"
+        let heading = document.getElementById('mainHeading');
+        let knapp5 = document.getElementById('knapp5');
+        knapp5.addEventListener('click', () => {
+            let newHeadingText = prompt('Ange ny text för rubriken');
+            heading.innerText = newHeadingText;
+        });
+
+        // -------------
+
+        // Övning 6
+        // Om användaren trycker på knapp6 => byt färg på rubriken till angiven färg
+        let heading2 = document.getElementById('mainHeading');
+        let knapp6 = document.getElementById('knapp6');
+        knapp6.addEventListener('click', () => {
+            let newColor = prompt('Ange namnet på den nya färgens namn på engelska');
+            heading2.style.color = newColor;
+        });
+
+        // -------------
+
+        // Övning 7)
+        // Skapa en variabel som hänvisar till rubriken "ingress" mha "getElementById"
+        // Använd "innerText" för att skriva "Hello World!" i ingressen
+        let preamble = document.getElementById('preamble');
+        let knapp7 = document.getElementById('knapp7');
+        knapp7.addEventListener('click', () => {
+            let newText = prompt('Ange texten som skall visas i ingressen');
+            preamble.innerText = newText;
+        });
+
+        // -------------
+
+        // Övning 8)
+        // Använd "innerText" för att skriva ut "Halló <b>heimur</b>! i "ingress"
+        // Testa "innerHTML" istället för innerText och se skillnaden
+        let preamble2 = document.getElementById('preamble');
+        let knapp8 = document.getElementById('knapp8');
+        knapp8.addEventListener('click', () => {
+            let newText = prompt('Ange text med HTML-taggar som skall visas i ingressen');
+            preamble2.innerHTML = newText;
+        });
+
+
+    </script>
+
+</body>
+</html>
