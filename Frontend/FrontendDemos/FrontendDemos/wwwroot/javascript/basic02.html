@@ -88,6 +88,17 @@
 
         */
 
+        let knapp2 = document.getElementById("knapp2");
+        let padding = 10;
+
+        function addPadding() {
+            if (padding < 100) {
+                padding += 10;
+            }
+            knapp2.style.padding = `${padding}px`;
+        }
+
+        knapp2.addEventListener('click', addPadding);
 
         /*
 
@@ -103,6 +114,17 @@
             mittElement.addEventListener("mouseout" ... )
 
         */
+
+        let knapp3 = document.getElementById("knapp3");
+
+        knapp3.addEventListener("mouseover", () => {
+            knapp3.style.color = "red";
+        });
+
+        knapp3.addEventListener("mouseout", () => {
+            knapp3.style.color = "black";
+        });
+
 
     </script>
 
