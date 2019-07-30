@@ -7,7 +7,10 @@
 </head>
 <body>
 
+    <h1 id="mainHeading">Rubrik</h1>
+
     <button id="knapp1">Grön varannan gång</button>
+    <button id="knapp15">Grön varannan gång, alternativ lösning</button>
     <button id="knapp2">Ändra knappens storlek</button>
     <button id="knapp3">För musen över mig</button>
 
@@ -30,8 +33,48 @@
                 mittElement.style.xxxxxx = .....
 
         */
+        let knapp1 = document.getElementById('knapp1');
+        let mainHeading = document.getElementById('mainHeading');
 
+        // Variabler som definieras utanför metoder kan ses på samma
+        // sätt som klassvariabler i C#. Det innebär att när värdet på
+        // variabeln nedan ändras i en metod så sker det globalt i skriptet,
+        // dvs förändras för alla andra funktioner.
+        let isGreenHeading = false;
 
+        knapp1.addEventListener('click', () => {
+
+            // Raden nedan sätter det boolska värdet till motsatsen
+            // till det värde som det hade när metoden anropades.
+            isGreenHeading = !isGreenHeading;
+
+            if (isGreenHeading) {
+                mainHeading.style.color = 'green';
+            }
+            else {
+                mainHeading.style.color = 'black';
+            }
+        });
+
+        /*
+
+        -----------
+        Övning 1, alternativ lösning
+        -----------
+
+        Om användaren trycker på knapp15 => byt färg på rubriken till varannan gång grön och svart
+
+        */
+
+        let knapp15 = document.getElementById('knapp15');
+        knapp15.addEventListener('click', () => {
+            if (mainHeading.style.color == 'green') {
+                mainHeading.style.color = 'black';
+            }
+            else {
+                mainHeading.style.color = 'green';
+            }
+        });
 
         /*
 
@@ -53,7 +96,7 @@
         -----------
 
         Om användaren för musen över knapp2 => sätt färgen till röd (och återställ till svart när användaren för musen förbi knappen)
-        
+
         Tips, kolla upp:
 
             mittElement.addEventListener("mouseover" ... )
