@@ -1,0 +1,25 @@
+﻿<link href="japan.css" rel="stylesheet" />
+
+<div id="wrap">
+</div>
+
+<script>
+
+    iLikeJapan();
+    
+    function iLikeJapan() {
+        let wrap = document.getElementById("wrap");
+
+        for (let i = 0; i < 5; i++) {
+            let newDiv = document.createElement("div");
+            newDiv.classList = "flaggan";
+
+            let newBoxy = document.createElement("div");
+            newBoxy.classList = "cirkeln";
+            newDiv.appendChild(newBoxy);
+
+            wrap.appendChild(newDiv);
+        }
+    }
+
+</script>

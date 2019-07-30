@@ -1,0 +1,43 @@
+
+<style>
+    #box {
+        width: 300px;
+        height: 300px;
+        border: solid 1px;
+    }
+
+    #myButton {
+        margin-bottom: 20px
+    }
+</style>
+
+<button id="myButton">Click me</button>
+
+<div id="box">
+</div>
+
+<script>
+
+    let box = document.getElementById("box");
+    let myButton = document.getElementById("myButton");
+    let paletteIndex = 0;
+    let palette = ["red", "green", "blue"]
+
+    function updateState() {
+        paletteIndex++;
+        if (paletteIndex >= palette.length) 
+            paletteIndex = 0;
+    }
+
+    function redraw() {
+        box.style.backgroundColor = palette[paletteIndex];
+    }
+
+    myButton.addEventListener("click", ()=>{
+        updateState();
+        redraw();
+    });
+
+    redraw();
+
+</script>

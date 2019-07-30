@@ -1,0 +1,44 @@
+﻿<link href="create.css" rel="stylesheet" />
+
+<div id="wrap">
+</div>
+
+<script>
+    //addOneDivToWrap();
+    //add50DivsToWrap();
+    add50DivsToWrap_Chess();
+
+    function addOneDivToWrap() {
+        let wrap = document.getElementById("wrap");
+        let newDiv = document.createElement("div");
+        newDiv.classList = "box";
+        wrap.appendChild(newDiv);
+    }
+
+    function add50DivsToWrap() {
+        let wrap = document.getElementById("wrap");
+
+        for (let i = 0; i < 50; i++) {
+            let newDiv = document.createElement("div");
+            newDiv.classList = "box";
+            wrap.appendChild(newDiv);
+        }
+    }
+
+    function add50DivsToWrap_Chess() {
+        let wrap = document.getElementById("wrap");
+
+        for (let i = 0; i < 50; i++) {
+            let newDiv = document.createElement("div");
+
+            if (i % 2 == 0)
+                newDiv.classList = "box box-dark";
+            else
+                newDiv.classList = "box";
+
+            wrap.appendChild(newDiv);
+        }
+    }
+
+
+</script>

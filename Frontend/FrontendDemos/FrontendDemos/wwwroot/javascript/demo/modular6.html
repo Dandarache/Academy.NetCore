@@ -1,0 +1,37 @@
+﻿<!-- Någon annans HTML kod börjar här -->
+
+<p id="number1">Mitt favorittal är 9</p>
+
+<!-- Någon annans HTML kod slutar här -->
+
+<div id="wrap">
+</div>
+
+<script src="someotherlib.js"></script>
+
+<script>
+    // Nu är vi bara beroende av "wrap"-elementet
+    (function () {
+        let wrap = document.getElementById("wrap");
+        let number1 = document.createElement("input");
+        let number2 = document.createElement("input");
+        let addbutton = document.createElement("button");
+        let result = document.createElement("div");
+
+        addbutton.innerText = "Ok";
+
+        wrap.appendChild(number1);
+        wrap.appendChild(number2);
+        wrap.appendChild(addbutton);
+        wrap.appendChild(result);
+
+        addbutton.addEventListener("click",
+            () => {
+                let sum = parseInt(number1.value) + parseInt(number2.value);
+                result.innerText = sum;
+            });
+    })();
+
+
+
+</script>

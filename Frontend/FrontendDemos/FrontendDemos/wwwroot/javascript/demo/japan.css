@@ -1,0 +1,18 @@
+﻿.flaggan {
+    border: solid 1px;
+    width: 456px;
+    height: 304px;
+    float: left;
+    margin: 10px;
+}
+
+.cirkeln {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(207, 20, 43);
+    border-radius: 100px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

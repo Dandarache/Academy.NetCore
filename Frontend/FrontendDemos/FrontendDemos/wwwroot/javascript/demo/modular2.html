@@ -1,0 +1,22 @@
+﻿
+<input id="number1" />
+<input id="number2" />
+<button id="addbutton">Addera</button>
+<div id="result"></div>
+
+<script src="someotherlib.js"></script>
+
+<script>
+    // Nu blir det konflikt!
+    let number1 = document.getElementById("number1");
+    let number2 = document.getElementById("number2");
+    let result = document.getElementById("result");
+    let addbutton = document.getElementById("addbutton");
+
+    addbutton.addEventListener("click", () => {
+        let sum = parseInt(number1.value) + parseInt(number2.value);
+        result.innerText = sum;
+    });
+
+
+</script>

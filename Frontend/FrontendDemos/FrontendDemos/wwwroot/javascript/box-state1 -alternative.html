@@ -1,0 +1,31 @@
+
+<style>
+    #box {
+        width: 300px;
+        height: 300px;
+        border: solid 1px;
+        margin-top: 10px;
+    }
+</style>
+
+<button id="myButton1">Red</button>
+<button id="myButton2">Green</button>
+<button id="myButton3">Blue</button>
+
+<div id="box">
+</div>
+
+<script>
+    // "Halvdynamiskt" med forEach
+    let box = document.getElementById("box");
+
+    let list = ["red", "green", "blue"];
+
+    list.forEach((color, index) => {
+        document.getElementById("myButton" + (index+1)).addEventListener("click", () => {
+            box.style.backgroundColor = color;
+        });
+    });
+
+
+</script>

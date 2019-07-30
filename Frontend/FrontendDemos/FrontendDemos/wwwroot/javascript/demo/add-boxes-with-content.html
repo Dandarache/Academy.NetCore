@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Academy TRV, JavaScript - DOM, Add boxes with Content</title>
+    <link href="/javascript/css/plain.css" rel="stylesheet" />
+
+    <style>
+
+        .box {
+            width: 100px;
+            height: 50px;
+            border: solid 1px;
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #boxWrapper {
+            width: 500px;
+            display: block;
+        }
+
+        #addBoxDialog {
+            width: 500px;
+            border: solid 1px;
+            margin-top: 10px;
+            padding: 20px;
+            display: none;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="addBoxButton">Add box</button>
+
+    <div id="addBoxDialog">
+        <p>
+            Title:
+            <br />
+            <input type="text" id="title" value="" />
+        </p>
+        <p>
+            Color:
+            <br />
+            <!-- Nyckelordet "checked" nedan anger att "red" skall vara förvalt när sidan laddas -->
+            <input type="radio" name="color" value="red" checked />Red
+            <br />
+            <input type="radio" name="color" value="green" />Green
+            <br />
+            <input type="radio" name="color" value="blue" />Blue
+            <br />
+            <input type="radio" name="color" value="yellow" />Yellow
+            <br />
+            <input type="radio" name="color" value="orange" />Orange
+        </p>
+        <p>
+            <button id="addBoxToBoxWrapperButton">Add Box</button>
+            <button id="cancelAddBoxToBoxWrapperButton">Cancel</button>
+        </p>
+    </div>
+
+    <div id="boxWrapper">
+    </div>
+
+    <script>
+
+        // Skapa referenser till de olika HTML-elementen
+        let boxWrapper = document.getElementById('boxWrapper');
+        let addBoxButton = document.getElementById('addBoxButton');
+        let addBoxDialog = document.getElementById('addBoxDialog');
+        let addBoxToBoxWrapperButton = document.getElementById('addBoxToBoxWrapperButton');
+        let cancelAddBoxToWrapperButton = document.getElementById('cancelAddBoxToBoxWrapperButton');
+
+        // Koppla addBoxButton till click-eventet och gör så att showAddDialog funktionen anropas.
+        addBoxButton.addEventListener('click', showAddDialog);
+
+        // Funktion som anropas när man klickar på addBoxButton.
+        function showAddDialog() {
+
+            // Koden nedan gör så att den osynliga rutan som innehåller själva formuläret visas.
+            // Det som sker är att man byter CSS-värde för display från "none" till "block".
+            addBoxDialog.style.display = 'block';
+        }
+
+        // Koppla addBoxToBoxWrapperButton till click-eventet och gör så att 
+        // addBoxToBoxWrapper funktionen anropas.
+        addBoxToBoxWrapperButton.addEventListener('click', addBoxToBoxWrapper);
+
+        // Funktion som skapar en DIV med innehåll som sedan läggs till som barn till boxWrapper-elementet.
+        function addBoxToBoxWrapper() {
+
+            // Skapa ett nytt DIV-element.
+            let newBox = document.createElement('div');
+
+            // Sätt CSS-klassen för det nya DIV-elementet.
+            newBox.classList = 'box';
+
+            // Skapa ett nytt H2-element.
+            let heading = document.createElement('h2');
+
+            // Hämta det värde som angivits i textrutan för titel.
+            let title = document.getElementById('title').value;
+
+            // Sätt innehållet för H2-elementet till titeln.
+            heading.innerText = title;
+
+            // Lägg till heading till den nya boxen, dvs DIV-elementet.
+            newBox.appendChild(heading);
+
+            // Hämta alla värden som tillhör radiobutton gruppen som har namn "color".
+            let colors = document.getElementsByName('color');
+
+            // Loopa igenom alla radiobuttons och kontrollera vilken radiobutton som är vald.
+            var color;
+            for(var i = 0; i < colors.length; i++){
+                if(colors[i].checked){
+                    color = colors[i].value;
+                    break;
+                }
+            }
+
+            // Sätt bakgrundsfärgen på den nya boxen till vald färg.
+            newBox.style.backgroundColor = color;
+
+            // Lägg till det nya DIV-elementet som ett barn till boxWrapper.
+            boxWrapper.appendChild(newBox);
+
+            // Göm formuläret
+            addBoxDialog.style.display = 'none';
+
+            // Nollställ formuläret så att det är redo för nästa gång någon klickar på addBox-knappen.
+            resetForm();
+        }
+
+        // Koppla cancelAddBoxToBoxWrapperButton till click-eventet och gör 
+        // så att cancelAddBoxToBoxWrapper funktionen anropas.
+        cancelAddBoxToBoxWrapperButton.addEventListener('click', cancelAddBoxToBoxWrapper);
+
+        // Funktion som gömmer och nollställer formuläret.
+        function cancelAddBoxToBoxWrapper() {
+            resetForm();
+            addBoxDialog.style.display = 'none';
+        }
+
+        // Funktion som nollställer formuläret.
+        function resetForm() {
+
+            // Sätt titeln till ett tomt värde.
+            document.getElementById('title').value = '';
+
+            // Hämta alla värden för radiobuttons gruppen "color".
+            let colors = document.getElementsByName('color');
+
+            // Sätt vald radiobutton till den första, dvs röd färg.
+            colors[0].checked = true;
+        }
+
+    </script>
+
+</body>
+</html>

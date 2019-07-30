@@ -1,0 +1,46 @@
+
+<style>
+    #box {
+        width: 300px;
+        height: 300px;
+        border: solid 1px;
+    }
+
+    #buttonWrap {
+        margin-bottom: 20px
+    }
+</style>
+
+<div id="buttonWrap">
+    <button id="previousButton">Previous</button>
+    <button id="nextButton">Next</button>
+</div>
+
+<div id="box">
+</div>
+
+<script>
+    let box = document.getElementById("box");
+    let previousButton = document.getElementById("previousButton");
+    let nextButton = document.getElementById("nextButton");
+    let currentState = 100;
+
+    function redraw() {
+        box.style.backgroundColor = `rgb(${currentState},0,0)`;
+    }
+
+    previousButton.addEventListener("click", () => {
+        currentState -= 20;
+        if (currentState < 0) currentState = 0;
+        redraw();
+    })
+
+    nextButton.addEventListener("click", () => {
+        currentState += 20;
+        if (currentState > 255) currentState = 255;
+        redraw();
+    })
+
+    redraw();
+
+</script>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="css/main.css" rel="stylesheet">
+    <meta charset="utf-8"/>
+</head>
+
+<body class="page-black" onload="bulbService.init('playground')">
+
+    <div id="playground" class="playground playground-black">
+    </div>
+
+    <script>
+
+        // Todo: nästa steg, separera styling o kunna ställa in styling vid init! (ev inte vara beroende av css-filen)
+
+        let bulbService = (function () {
+
+            const bulbStates = [];
+            let nrOfBulbs = 0;
+
+            let buttons={};
+            let bulbs={};
+
+            function init(id) {
+
+                const heading = document.createElement("div");
+                heading.style.color = "#fff";
+                heading.innerText = "Number of bulbs";
+
+                const input = document.createElement("input");
+                input.addEventListener("keyup", () => {
+                    numberOfBulbChanged(input.value);
+                });
+
+                buttons = document.createElement("div");
+                bulbs = document.createElement("div");
+
+                const main = document.getElementById(id);
+                main.appendChild(heading);
+                main.appendChild(input);
+                main.appendChild(buttons);
+                main.appendChild(bulbs);
+
+                redraw();
+            }
+
+            function isPositiveWholeNumber(x) {
+                return x == parseInt(x) && parseInt(x) >=0;
+            }
+
+            function numberOfBulbChanged(enteredtext) {
+
+                if (!isPositiveWholeNumber(enteredtext))
+                    return;
+
+                const newNumberOfBulbs = parseInt(enteredtext);
+
+                nrOfBulbs = newNumberOfBulbs;
+
+                if (newNumberOfBulbs > bulbStates.length) {
+
+                    const bulbsToAdd = newNumberOfBulbs - bulbStates.length;
+                    for (let i = 0; i < bulbsToAdd; i++)
+                        bulbStates.push(false);
+                }
+
+                redraw();
+
+            }
+
+            function eraseAllChildren(node) {
+
+                while (node.firstChild) {
+                    node.removeChild(node.firstChild);
+                }
+            }
+
+            function createButton(index) {
+
+                const button = document.createElement("button");
+                button.className = "button-smaller";
+                button.addEventListener("click", () => {
+                    toggleBulb(index);
+                });
+                button.innerText=`Toggle bulb ${index+1}`;
+                return button;                        
+            }
+
+            function createImage(index) {
+                const image = document.createElement("img");
+                image.className = "bulb bulb-smaller"; 
+
+                image.addEventListener("click", () => {
+                    toggleBulb(index);
+                });
+
+                return image;
+            }
+
+            function updateBulbsAndButtons() {
+
+                eraseAllChildren(buttons);
+                eraseAllChildren(bulbs);
+
+                for (let index = 0; index < nrOfBulbs; index++) {
+
+                    buttons.appendChild(createButton(index));
+                    bulbs.appendChild(createImage(index));
+
+                }
+            }
+
+            function setOnOrOff() {
+                const bulbOnImage = "img/bulb-on.jpg";
+                const bulbOffImage = "img/bulb-off.jpg";
+
+                for (let index = 0; index < nrOfBulbs; index++) {
+                    const bulbImage = bulbStates[index] ? bulbOnImage : bulbOffImage;
+                    bulbs.childNodes[index].src = bulbImage;
+                }
+
+            }
+
+            function toggleBulb(index) {
+                bulbStates[index] = !bulbStates[index];
+                setOnOrOff();
+            }
+
+            function redraw() {
+
+                updateBulbsAndButtons();
+                setOnOrOff();
+            }
+
+            return {
+                init: init
+            };
+        })();
+
+    </script>
+</body>
+
+</html>

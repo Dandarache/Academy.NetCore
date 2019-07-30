@@ -1,0 +1,31 @@
+﻿<!-- Någon annans HTML kod börjar här -->
+
+<p id="number1">Mitt favorittal är 9</p>
+
+<!-- Någon annans HTML kod slutar här -->
+
+<input id="number1" />
+<input id="number2" />
+<button id="addbutton">Addera</button>
+<div id="result"></div>
+
+<script src="someotherlib.js"></script>
+
+<script>
+    // Problem: någon annan har döpt en <p>-tagg till "number1"
+    (function () {
+        let number1 = document.getElementById("number1");
+        let number2 = document.getElementById("number2");
+        let result = document.getElementById("result");
+        let addbutton = document.getElementById("addbutton");
+
+        addbutton.addEventListener("click",
+            () => {
+                let sum = parseInt(number1.value) + parseInt(number2.value);
+                result.innerText = sum;
+            });
+    })();
+
+
+
+</script>
