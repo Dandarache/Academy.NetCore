@@ -21,12 +21,23 @@
 
     <script>
 
-        let bulbOn = '/javascript/img/bulb-on.jpg';
-        let bulbOff = '/javascript/img/bulb-off.jpg';
+        // Skapa variabler med bildernas länkar.
+        // Koden 'location.origin + ...' används för att få tag på länken till 
+        // själva siten, t.ex http://localhost:12345, och används sedan för att
+        // konkatenera ihop den absoluta länken till bilden på servern.
+        let bulbOn = location.origin + '/javascript/img/bulb-on.jpg';
+        let bulbOff = location.origin + '/javascript/img/bulb-off.jpg';
 
+        // Metod som används för att växla mellan en tänd och en släkt lampa.
+        // Metoden tar en parameter, 'id', som används för att skapa en referens till elementet.
         function toggleBulb(id) {
+
+            // Skapa en referens till den aktuella bilden.
             let bulb = document.getElementById(id);
-            if (bulb.src === location.origin + bulbOn) {
+
+            // Jämför bildens nuvarande länk med länken till den tända lamp-bilden.
+            // De tre likamedtecknena används för att både jämföra värde och typ i JavaScript.
+            if (bulb.src === bulbOn) {
                 bulb.src = bulbOff;
             }
             else {

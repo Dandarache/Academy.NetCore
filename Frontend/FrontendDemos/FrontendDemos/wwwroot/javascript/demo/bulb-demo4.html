@@ -14,7 +14,7 @@
         <button id="lightButtonAllOn">Light all bulbs</button>
         <button id="lightButtonAllOff">Switch of all bulbs</button>
         <button id="lightButtonAllToggle">Toggle all bulbs</button>
-        <button id="lightButtonAllTimerToggle">Start bulb toggler</button>
+        <button id="lightButtonAllTimerToggle">Start/stop bulb toggler</button>
 
         <button id="lightButton1">Light bulb 1</button>
         <button id="lightButton2">Light bulb 2</button>
@@ -31,6 +31,8 @@
         let bulb2State = false;
         let bulb3State = false;
         let bulbTogglerActive = false;
+
+        var intervalTimer;
 
         function toggleBulb(id) {
 
@@ -70,6 +72,7 @@
             bulb3State = toggleBulb('bulb3');
         });
 
+
         let lightButtonAllOn = document.getElementById('lightButtonAllOn');
         lightButtonAllOn.addEventListener('click', () => {
             bulb1.src = bulbOn;
@@ -77,6 +80,7 @@
             bulb3.src = bulbOn;
         });
         
+
         let lightButtonAllOff = document.getElementById('lightButtonAllOff');
         lightButtonAllOff.addEventListener('click', () => {
             bulb1.src = bulbOff;
@@ -93,13 +97,20 @@
         
         let lightButtonAllTimerToggle = document.getElementById('lightButtonAllTimerToggle');
         lightButtonAllTimerToggle.addEventListener('click', () => {
+
             bulbTogglerActive = !bulbTogglerActive;
 
-            setInterval(() => {
-                bulb1State = toggleBulb('bulb1');
-                bulb2State = toggleBulb('bulb2');
-                bulb3State = toggleBulb('bulb3');
-            }, 5000);
+            if (bulbTogglerActive) {
+                intervalTimer = setInterval(() => {
+                    bulb1State = toggleBulb('bulb1');
+                    bulb2State = toggleBulb('bulb2');
+                    bulb3State = toggleBulb('bulb3');
+                }, 1000);
+            }
+            else {
+                clearInterval(intervalTimer);
+            }
+
         });
         
 
