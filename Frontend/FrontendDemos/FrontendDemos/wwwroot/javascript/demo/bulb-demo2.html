@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="/javascript/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="playground playground-black">
+
+        <img id="bulb1" src="/javascript/img/bulb-off.jpg" class="bulb" />
+        <img id="bulb2" src="/javascript/img/bulb-off.jpg" class="bulb" />
+        <img id="bulb3" src="/javascript/img/bulb-off.jpg" class="bulb" />
+
+        <button id="lightButtonAll">Light all bulbs</button>
+
+        <button id="lightButton1">Light bulb 1</button>
+        <button id="lightButton2">Light bulb 2</button>
+        <button id="lightButton3">Light bulb 3</button>
+
+    </div>
+
+    <script>
+
+        let bulbOn = '/javascript/img/bulb-on.jpg';
+        let bulbOff = '/javascript/img/bulb-off.jpg';
+
+        let bulb1State = false;
+        let bulb2State = false;
+        let bulb3State = false;
+
+        function toggleBulb(id) {
+            let bulb = document.getElementById(id);
+            if (bulb.src === bulbOn) {
+                bulb.src = bulbOff;
+            }
+            else {
+                bulb.src = bulbOn;
+            }
+        }
+
+
+        let bulb1 = document.getElementById('bulb1');
+        let lightButton1 = document.getElementById('lightButton1');
+        lightButton1.addEventListener('click', () => {
+
+            toggleBulb('bulb1');
+            //bulb1.src = bulbOn;
+        });
+
+
+        let bulb2 = document.getElementById('bulb2');
+        let lightButton2 = document.getElementById('lightButton2');
+        lightButton2.addEventListener('click', () => {
+            bulb2.src = bulbOn;
+        });
+
+
+        let bulb3 = document.getElementById('bulb3');
+        let lightButton3 = document.getElementById('lightButton3');
+        lightButton3.addEventListener('click', () => {
+            bulb3.src = bulbOn;
+        });
+
+
+        let lightButtonAll = document.getElementById('lightButtonAll');
+        lightButtonAll.addEventListener('click', () => {
+            bulb1.src = bulbOn;
+            bulb2.src = bulbOn;
+            bulb3.src = bulbOn;
+        });
+        
+
+
+    </script>
+
+
+</body>
+</html>

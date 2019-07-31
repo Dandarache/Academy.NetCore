@@ -1,0 +1,52 @@
+﻿body {
+    font-family: "Open sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000;
+}
+
+img {
+    width: 400px;
+}
+
+p {
+    color: #FF0000;
+}
+
+.blue {
+    /*color: #0000FF;*/
+    /*color: blue !important;*/
+    color: rgb(0,0,255);
+}
+
+.academy-padding {
+    padding: 50px;
+}
+
+.academy-quote {
+    margin-left: 100px;
+    /*padding: 50px;*/
+    /*padding: 50px 0 50px 0;*/
+    background-color: yellow;
+    text-decoration: line-through;
+    font-size: 24px;
+    width: 400px;
+}
+
+.right-justify {
+    text-align: right;
+}
+
+#moreInfoBox {
+    background-color: aqua;
+    border: solid 1px blue;
+    /*padding: 20px;*/
+}
+
+#moreInfoBox:hover {
+    background-color: lightblue;
+}
+
+.roundcorners {
+    border-radius: 25px;
+}
