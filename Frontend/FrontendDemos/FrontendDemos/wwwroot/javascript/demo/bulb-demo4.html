@@ -12,6 +12,9 @@
         <img id="bulb3" src="/javascript/img/bulb-off.jpg" class="bulb" />
 
         <button id="lightButtonAllOn">Light all bulbs</button>
+        <button id="lightButtonAllOff">Switch of all bulbs</button>
+        <button id="lightButtonAllToggle">Toggle all bulbs</button>
+        <button id="lightButtonAllTimerToggle">Start bulb toggler</button>
 
         <button id="lightButton1">Light bulb 1</button>
         <button id="lightButton2">Light bulb 2</button>
@@ -24,35 +27,47 @@
         let bulbOn = '/javascript/img/bulb-on.jpg';
         let bulbOff = '/javascript/img/bulb-off.jpg';
 
+        let bulb1State = false;
+        let bulb2State = false;
+        let bulb3State = false;
+        let bulbTogglerActive = false;
+
         function toggleBulb(id) {
+
             let bulb = document.getElementById(id);
-            if (bulb.src === location.origin + bulbOn) {
+
+            let isBulbOn = bulb.src === location.origin + '' + bulbOn;
+
+            if (isBulbOn) {
                 bulb.src = bulbOff;
             }
             else {
                 bulb.src = bulbOn;
             }
+
+            return !isBulbOn;
         }
 
         let bulb1 = document.getElementById('bulb1');
         let lightButton1 = document.getElementById('lightButton1');
         lightButton1.addEventListener('click', () => {
-            toggleBulb('bulb1');
+
+            bulb1State = toggleBulb('bulb1');
         });
 
 
         let bulb2 = document.getElementById('bulb2');
         let lightButton2 = document.getElementById('lightButton2');
         lightButton2.addEventListener('click', () => {
-            toggleBulb('bulb2');
+
+            bulb2State = toggleBulb('bulb2');
         });
 
 
         let bulb3 = document.getElementById('bulb3');
         let lightButton3 = document.getElementById('lightButton3');
         lightButton3.addEventListener('click', () => {
-            toggleBulb('bulb3');
-            //bulb3.src = bulbOn;
+            bulb3State = toggleBulb('bulb3');
         });
 
         let lightButtonAllOn = document.getElementById('lightButtonAllOn');
@@ -62,6 +77,33 @@
             bulb3.src = bulbOn;
         });
         
+        let lightButtonAllOff = document.getElementById('lightButtonAllOff');
+        lightButtonAllOff.addEventListener('click', () => {
+            bulb1.src = bulbOff;
+            bulb2.src = bulbOff
+            bulb3.src = bulbOff
+        });
+
+        let lightButtonAllToggle = document.getElementById('lightButtonAllToggle');
+        lightButtonAllToggle.addEventListener('click', () => {
+            bulb1State = toggleBulb('bulb1');
+            bulb2State = toggleBulb('bulb2');
+            bulb3State = toggleBulb('bulb3');
+        });
+        
+        let lightButtonAllTimerToggle = document.getElementById('lightButtonAllTimerToggle');
+        lightButtonAllTimerToggle.addEventListener('click', () => {
+            bulbTogglerActive = !bulbTogglerActive;
+
+            setInterval(() => {
+                bulb1State = toggleBulb('bulb1');
+                bulb2State = toggleBulb('bulb2');
+                bulb3State = toggleBulb('bulb3');
+            }, 5000);
+        });
+        
+
+
     </script>
 
 
