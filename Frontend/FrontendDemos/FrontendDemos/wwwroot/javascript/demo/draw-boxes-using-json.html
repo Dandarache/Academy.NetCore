@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Academy TRV, JavaScript - DOM, Add boxes with Content</title>
+    <link href="/javascript/css/plain.css" rel="stylesheet" />
+
+    <style>
+
+        .box {
+            width: 300px;
+            height: 150px;
+            border: solid 1px;
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #boxWrapper {
+            width: 500px;
+            display: block;
+        }
+
+        #addBoxDialog {
+            width: 500px;
+            border: solid 1px;
+            margin-top: 10px;
+            padding: 20px;
+            display: none;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="boxWrapper">
+    </div>
+
+    <script>
+
+        // Skapa referenser till de olika HTML-elementen
+        let boxWrapper = document.getElementById('boxWrapper');
+
+        let persons = [
+            {
+                'personId': 1,
+                'firstName': 'Dan',
+                'lastName': 'Jansson',
+                'age': '47',
+                'hobbies': [
+                    { 'name': 'running' },
+                    { 'name': 'cycling' },
+                    { 'name': 'swimming' },
+                    { 'name': 'skiing' }
+                ],
+                'favoriteHobby': 'cycling'
+            },
+            {
+                'personId': 2,
+                'firstName': 'Kalle',
+                'lastName': 'Andersson',
+                'age': '33',
+                'hobbies': [
+                    { 'name': 'knyppling' },
+                    { 'name': 'karate' },
+                    { 'name': 'nature' }
+                ],
+                'favoriteHobby': 'nature'
+            },
+            {
+                'personId': 3,
+                'firstName': 'Lisa',
+                'lastName': 'Bengtsson',
+                'age': '25',
+                'hobbies': [
+                    { 'name': 'diving' },
+                    { 'name': 'skiing' },
+                    { 'name': 'travelling' }
+                ],
+                'favoriteHobby': 'skiing'
+            }
+        ];
+
+        for (let person of persons) {
+            addBoxToBoxWrapper(person)
+        }
+
+        // Funktion som skapar en DIV med innehåll som sedan läggs till som barn till boxWrapper-elementet.
+        function addBoxToBoxWrapper(person) {
+
+            // Skapa ett nytt DIV-element.
+            let newBox = document.createElement('div');
+
+            // Sätt CSS-klassen för det nya DIV-elementet.
+            newBox.classList = 'box';
+
+            // Skapa ett nytt H2-element.
+            let heading = document.createElement('h2');
+
+            // Sätt innehållet för H2-elementet till titeln.
+            heading.innerText = person.firstName + ' ' + person.lastName;
+
+            // Lägg till heading till den nya boxen, dvs DIV-elementet.
+            newBox.appendChild(heading);
+
+            // Rendera hobbies
+            for (let hobby of person.hobbies) {
+                isFavoriteHobby = (hobby.name === person.favoriteHobby);
+                let hobbyRadiobutton = createRadioElement('hobby' + person.personId, hobby.name, isFavoriteHobby);
+                newBox.appendChild(hobbyRadiobutton);
+            }
+
+            // Sätt bakgrundsfärgen på den nya boxen till vald färg.
+            newBox.style.backgroundColor = 'lightBlue';
+
+            // Lägg till det nya DIV-elementet som ett barn till boxWrapper.
+            boxWrapper.appendChild(newBox);
+        }
+
+        function createRadioElement(name, value, checked) {
+            var radioHtml = '<div>';
+            radioHtml += '<input type="radio" name="' + name + '" value="' + value + '"';
+            if (checked) {
+                radioHtml += ' checked="checked"';
+            }
+            radioHtml += '/>';
+            radioHtml += value;
+            radioHtml += '</div>';
+
+            var radioFragment = document.createElement('div');
+            radioFragment.innerHTML = radioHtml;
+
+            return radioFragment.firstChild;
+        }
+
+    </script>
+
+</body>
+</html>
