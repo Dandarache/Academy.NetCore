@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Egg - Level 1</title>
+    <link href="style/main.css" rel="stylesheet" />
+</head>
+<body>
+
+    <img src="/egg/images/egg1-closed.png" id="egg1" />
+    <img src="/egg/images/egg1-closed.png" id="egg2" />
+    <img src="/egg/images/egg1-closed.png" id="egg3" />
+
+    <script>
+
+        let egg1 = document.getElementById('egg1');
+        let egg2 = document.getElementById('egg2');
+        let egg3 = document.getElementById('egg3');
+
+        egg1.addEventListener('click', () => {
+            let currentImageUrl = egg1.src;
+            let hostUrl = location.origin;
+            currentImageUrl = currentImageUrl.replace(hostUrl, '');
+
+            switch (currentImageUrl) {
+                case '/egg/images/egg1-closed.png':
+                    egg1.src = '/egg/images/egg2-open.png';
+                    break;
+                case '/egg/images/egg2-open.png':
+                    egg1.src = '/egg/images/egg3-double.png';
+                    break;
+                case '/egg/images/egg3-double.png':
+                    egg1.src = '/egg/images/egg1-closed.png';
+                    break;
+                default:
+            }
+        });
+
+    </script>
+</body>
+</html>

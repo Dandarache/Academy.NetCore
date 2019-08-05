@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Academy TRV, JavaScript - DOM, Add boxes with Content</title>
+    <link href="/javascript/css/plain.css" rel="stylesheet" />
+
+    <style>
+
+        .box {
+            width: 300px;
+            height: 150px;
+            border: solid 1px;
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #boxWrapper {
+            width: 500px;
+            display: block;
+        }
+
+        #addBoxDialog {
+            width: 500px;
+            border: solid 1px;
+            margin-top: 10px;
+            padding: 20px;
+            display: none;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="boxWrapper">
+    </div>
+
+    <button id="previousButton">Föregående</button>
+    <button id="nextButton">Nästa</button>
+    <button id="summaryButton" style="display: none;">Visa alla</button>
+
+    <script>
+
+        // Skapa referenser till de olika HTML-elementen
+        let boxWrapper = document.getElementById('boxWrapper');
+        let previousButton = document.getElementById('previousButton');
+        let nextButton = document.getElementById('nextButton');
+        let summaryButton = document.getElementById('summaryButton');
+
+        // Definiera variabler
+        let currentPersonId = 1;
+
+        // Koppla händelser
+        previousButton.addEventListener('click', displayPrevious);
+        nextButton.addEventListener('click', displayNext);
+        summaryButton.addEventListener('click', displaySummary);
+
+        // Skapa en datastruktur baserat på JSON
+        let persons = [
+            {
+                'personId': 1,
+                'firstName': 'Dan',
+                'lastName': 'Jansson',
+                'age': '47',
+                'hobbies': [
+                    { 'name': 'running' },
+                    { 'name': 'cycling' },
+                    { 'name': 'swimming' },
+                    { 'name': 'skiing' }
+                ],
+                'favoriteHobby': 'cycling',
+                'newSelectedHobby': ''
+            },
+            {
+                'personId': 2,
+                'firstName': 'Kalle',
+                'lastName': 'Andersson',
+                'age': '33',
+                'hobbies': [
+                    { 'name': 'knyppling' },
+                    { 'name': 'karate' },
+                    { 'name': 'nature' }
+                ],
+                'favoriteHobby': 'nature',
+                'newSelectedHobby': ''
+            },
+            {
+                'personId': 3,
+                'firstName': 'Lisa',
+                'lastName': 'Bengtsson',
+                'age': '25',
+                'hobbies': [
+                    { 'name': 'diving' },
+                    { 'name': 'skiing' },
+                    { 'name': 'travelling' }
+                ],
+                'favoriteHobby': 'skiing',
+                'newSelectedHobby': ''
+            }
+        ];
+
+        // Skapa en ruta (DIV) för varje person i objektet/datastrukturen ovan.
+        for (let person of persons) {
+            addBoxToBoxWrapper(person)
+        }
+
+        // Visa den första personens kort.
+        updateDisplay();
+
+        function displayNext() {
+            if (currentPersonId < persons.length) {
+                currentPersonId++;
+                updateDisplay();
+            }
+        }
+
+        function displayPrevious() {
+            if (currentPersonId >= 1) {
+                currentPersonId--;
+                updateDisplay();
+            }
+        }
+
+        function displaySummary() {
+        }
+
+        function updateDisplay() {
+            updatePerson();
+            hideAllPersons();
+            displayPerson();
+            updateButtons();
+        }
+
+        function updatePerson() {
+            let personId = 'personDiv' + currentPersonId;
+            let element = document.getElementById(personId);
+
+
+            let colors = document.getElementsByName('color');
+
+
+            // Loopa igenom alla radiobuttons och kontrollera vilken radiobutton som är vald.
+            var color;
+            for (var i = 0; i < colors.length; i++) {
+                if (colors[i].checked) {
+                    color = colors[i].value;
+                    break;
+                }
+            }
+        }
+
+        function updateButtons() {
+            nextButton.disabled = false;
+            previousButton.disabled = false;
+            if (currentPersonId === 1) {
+                previousButton.disabled = true;
+            }
+            if (currentPersonId > (persons.length - 1)) {
+                nextButton.disabled = true;
+            }
+        }
+        function hideAllPersons() {
+            for (let person of persons) {
+                let personId = 'personDiv' + person.personId;
+                let element = document.getElementById(personId);
+                element.style.display = 'none';
+            }
+        }
+
+        // Funktion som visar den första personen.
+        function displayPerson() {
+            let personId = 'personDiv' + currentPersonId;
+            let element = document.getElementById(personId);
+            element.style.display = 'block';
+        }
+
+        // Funktion som skapar en DIV med innehåll som sedan läggs till som barn till boxWrapper-elementet.
+        function addBoxToBoxWrapper(person) {
+
+            // Skapa ett nytt DIV-element.
+            let newBox = document.createElement('div');
+
+            // Sätt CSS-klassen för det nya DIV-elementet.
+            newBox.classList = 'box';
+
+            // Skapa ett nytt H2-element.
+            let heading = document.createElement('h2');
+
+            // Sätt innehållet för H2-elementet till titeln.
+            heading.innerText = person.firstName + ' ' + person.lastName;
+
+            // Lägg till heading till den nya boxen, dvs DIV-elementet.
+            newBox.appendChild(heading);
+
+            // Rendera hobbies
+            for (let hobby of person.hobbies) {
+                isFavoriteHobby = (hobby.name === person.favoriteHobby);
+                let hobbyRadiobutton = createRadioElement('hobby' + person.personId, hobby.name, isFavoriteHobby);
+                newBox.appendChild(hobbyRadiobutton);
+            }
+
+            // Sätt egenskaper för det nya DIV-elementet.
+            newBox.id = 'personDiv' + person.personId;
+            newBox.style.backgroundColor = 'lightBlue';
+            newBox.style.display = 'none';
+
+            // Lägg till det nya DIV-elementet som ett barn till boxWrapper.
+            boxWrapper.appendChild(newBox);
+        }
+
+        function createRadioElement(name, value, checked) {
+            var radioHtml = '<div>';
+            radioHtml += '<input type="radio" name="' + name + '" value="' + value + '"';
+            if (checked) {
+                radioHtml += ' checked="checked"';
+            }
+            radioHtml += '/>';
+            radioHtml += value;
+            radioHtml += '</div>';
+
+            var radioFragment = document.createElement('div');
+            radioFragment.innerHTML = radioHtml;
+
+            return radioFragment.firstChild;
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Egg - Level 2</title>
+    <link href="style/main.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="eggContainer">
+    </div>
+
+    <script>
+
+        let eggState = ["closed", "closed", "closed"];
+
+        function renderEggs() {
+            let eggContainer = document.getElementById("eggContainer");
+            eggContainer.innerHTML = "";
+
+            for (let i = 0; i < eggState.length; i++) {
+                let state = eggState[i];
+                let img = document.createElement("img");
+                if (state === "closed") img.src = "images/egg1-closed.png";
+                if (state === "open") img.src = "images/egg2-open.png";
+                if (state === "double") img.src = "images/egg3-double.png";
+
+                img.setAttribute("draggable", "false");
+
+                img.addEventListener("click", () => {
+                    if (state === "closed") eggState[i] = "open";
+                    else if (state === "open") eggState[i] = "double";
+                    else if (state === "double") {
+                        eggState[i] = "closed";
+                        eggState.splice(i, 0, "closed"); // stoppar in ett "closed" vid position "i"
+                    }
+                    renderEggs();
+                });
+                eggContainer.appendChild(img);
+            }
+        }
+        renderEggs();
+
+    </script>
+
+
+
+</body>
+</html>

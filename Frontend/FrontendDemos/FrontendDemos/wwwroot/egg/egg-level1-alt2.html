@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Egg - Level 1</title>
+    <link href="style/main.css" rel="stylesheet" />
+</head>
+<body>
+
+    <img src="/egg/images/egg1-closed.png" id="egg1" onclick="toggleEgg('egg1')" />
+    <img src="/egg/images/egg1-closed.png" id="egg2" onclick="toggleEgg('egg2')" />
+    <img src="/egg/images/egg1-closed.png" id="egg3" onclick="toggleEgg('egg3')" />
+
+    <script>
+
+        function toggleEgg(id) {
+            let egg = document.getElementById(id);
+            let currentImageUrl = egg.src;
+
+            if (currentImageUrl.match('closed')) {
+                egg.src = '/egg/images/egg2-open.png';
+            }
+            else if (currentImageUrl.match('open')) {
+                egg.src = '/egg/images/egg3-double.png';
+            }
+            else {
+                egg.src = '/egg/images/egg1-closed.png';
+            }
+
+        };
+
+    </script>
+</body>
+</html>

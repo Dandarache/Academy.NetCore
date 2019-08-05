@@ -36,11 +36,23 @@
     <div id="boxWrapper">
     </div>
 
+    <button id="previousButton">Föregående</button>
+    <button id="nextButton">Nästa</button>
+    <button id="summaryButton" style="display: none;">Visa alla</button>
+
     <script>
 
         // Skapa referenser till de olika HTML-elementen
-        let boxWrapper = document.getElementById('boxWrapper');
+        let previousButton = document.getElementById('previousButton');
+        let nextButton = document.getElementById('nextButton');
+        let summaryButton = document.getElementById('summaryButton');
 
+        // Koppla händelser
+        previousButton.addEventListener('click', displayPrevious);
+        nextButton.addEventListener('click', displayNext);
+        summaryButton.addEventListener('click', displaySummary);
+
+        // Skapa en datastruktur baserat på JSON
         let persons = [
             {
                 'personId': 1,
@@ -53,7 +65,8 @@
                     { 'name': 'swimming' },
                     { 'name': 'skiing' }
                 ],
-                'favoriteHobby': 'cycling'
+                'favoriteHobby': 'cycling',
+                'newSelectedHobby': ''
             },
             {
                 'personId': 2,
@@ -65,7 +78,8 @@
                     { 'name': 'karate' },
                     { 'name': 'nature' }
                 ],
-                'favoriteHobby': 'nature'
+                'favoriteHobby': 'nature',
+                'newSelectedHobby': ''
             },
             {
                 'personId': 3,
@@ -77,12 +91,69 @@
                     { 'name': 'skiing' },
                     { 'name': 'travelling' }
                 ],
-                'favoriteHobby': 'skiing'
+                'favoriteHobby': 'skiing',
+                'newSelectedHobby': ''
             }
         ];
 
-        for (let person of persons) {
-            addBoxToBoxWrapper(person)
+        // Definiera variabler
+        let currentPersonIndex = 0;
+
+        // Visa den första personens kort.
+        // Updatera det som visas på skärmen.
+        updateDisplay();
+
+        function displayNext() {
+            if (currentPersonIndex < persons.length) {
+                currentPersonIndex++;
+                updateDisplay();
+            }
+        }
+
+        function displayPrevious() {
+            if (currentPersonIndex >= 1) {
+                currentPersonIndex--;
+                updateDisplay();
+            }
+        }
+
+        function displaySummary() {
+        }
+
+        function updateDisplay() {
+            updatePersonData();
+            displayPerson();
+            updateButtons();
+        }
+
+        function updatePersonData() {
+            let personDiv = document.getElementById('personDiv');
+            if (personDiv === null) {
+                return;
+            }
+            else {
+            // Loopa igenom alla radiobuttons och kontrollera vilken radiobutton som är vald.
+                var selectedHobby;
+                let hobbies = document.getElementsByName('hobby');
+                for(var i = 0; i < hobbies.length; i++){
+                    if(hobbies[i].checked){
+                        selectedHobby = hobbies[i].value;
+                        break;
+                    }
+                }
+                persons[currentPersonIndex].newSelectedHobby = selectedHobby;
+            }
+        }
+
+        function updateButtons() {
+            nextButton.disabled = false;
+            previousButton.disabled = false;
+            if (currentPersonIndex === 0) {
+                previousButton.disabled = true;
+            }
+            if (currentPersonIndex > (persons.length - 2)) {
+                nextButton.disabled = true;
+            }
         }
 
         // Funktion som skapar en DIV med innehåll som sedan läggs till som barn till boxWrapper-elementet.
@@ -106,11 +177,12 @@
             // Rendera hobbies
             for (let hobby of person.hobbies) {
                 isFavoriteHobby = (hobby.name === person.favoriteHobby);
-                let hobbyRadiobutton = createRadioElement('hobby' + person.personId, hobby.name, isFavoriteHobby);
+                let hobbyRadiobutton = createRadioElement('hobby', hobby.name, isFavoriteHobby);
                 newBox.appendChild(hobbyRadiobutton);
             }
 
-            // Sätt bakgrundsfärgen på den nya boxen till vald färg.
+            // Sätt egenskaper för det nya DIV-elementet.
+            newBox.id = 'personDiv';
             newBox.style.backgroundColor = 'lightBlue';
 
             // Lägg till det nya DIV-elementet som ett barn till boxWrapper.
@@ -131,6 +203,15 @@
             radioFragment.innerHTML = radioHtml;
 
             return radioFragment.firstChild;
+        }
+
+        // Funktion som visar den första personen.
+        function displayPerson() {
+            let boxWrapper = document.getElementById('boxWrapper');
+            for (let child of boxWrapper.children) {
+                child.remove();
+            }
+            addBoxToBoxWrapper(persons[currentPersonIndex]);
         }
 
     </script>
