@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Demo 1</title>
+
+    <link href="css/main.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body class="page-black">
+
+    <div class="playground playground-black">
+
+        <button id="lightButton1">Light bulb</button>
+
+        <img id="bulb1" src="img/bulb-off.jpg" class="bulb" />
+    </div>
+
+    <script>
+
+        //let foo = document.getElementById...
+
+        $('#lightButton1').click(function () {
+            $('#bulb1').attr('src', 'img/bulb-on.jpg')
+            //alert(1);
+        });
+
+    </script>
+
+</body>
+</html>
