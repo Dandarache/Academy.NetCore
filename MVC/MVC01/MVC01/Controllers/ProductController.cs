@@ -53,7 +53,10 @@ namespace MVC01.Controllers
         public IActionResult Dan()
         {
             var model = "Dan Jansson is best!";
-            return View("Dan", model);
+            //return View();
+            return View("~/Views/Product/Dan.cshtml", model);
+            //return View("Danne", model);
+
         }
 
         public IActionResult Get(int id)
