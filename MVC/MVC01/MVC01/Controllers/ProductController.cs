@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MVC01.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -61,8 +62,16 @@ namespace MVC01.Controllers
 
         public IActionResult Get(int id)
         {
-            var model = Products.FirstOrDefault(prod => prod.Id.Equals(id));
-            return View("DisplayProduct", model);
+            var product = Products.FirstOrDefault(prod => prod.Id.Equals(id));
+            var allProducts = Products;
+
+            var viewModel = new ProductViewModel
+            {
+                CurrentProduct = product,
+                Products = allProducts
+            };
+
+            return View("DisplayProduct", viewModel);
         }
 
         public IActionResult Index()

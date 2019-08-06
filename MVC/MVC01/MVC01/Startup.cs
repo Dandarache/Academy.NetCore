@@ -32,11 +32,12 @@ namespace MVC01
                 routes.MapRoute(
                     name: "withId",
                     //template: "{controller}/{action}/{id}");
-                    template: "{controller}/{action}/{id?}");
+                    //template: "{controller}/{action}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
                 //routes.MapRoute(
                 //        name: "default",
-                //        template: "{controller}/{action}");
+                //        template: "{controller}");
 
             });
 

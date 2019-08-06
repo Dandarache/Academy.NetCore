@@ -1,4 +1,4 @@
-﻿namespace MVC01.Controllers
+﻿namespace MVC01.Models
 {
     public class Product
     {

@@ -1,23 +1,38 @@
-﻿@model MVC01.Controllers.Product
+﻿@model ProductViewModel
+@*@model Product*@
 
-<html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+<div class="container">
 
-<body>
+    <div class="row">
 
-    <div class="container">
+        <!-- Current Product START -->
+        <div class="col-8">
+            <h1>@Model.CurrentProduct.Name</h1>
+            <h2>@Model.CurrentProduct.ProductNumber</h2>
+            <p>@Model.CurrentProduct.Description</p>
+        </div>
+        <!-- Current Product END -->
 
-        <h1>@Model.Name</h1>
-        <h2>@Model.ProductNumber</h2>
-        <p>@Model.Description</p>
+        <!-- Related Products START -->
+        <div class="col-4">
+            @foreach (var product in Model.Products)
+            {
+                <div class="alert alert-primary">
+                    <a asp-controller="Product" asp-action="Get" asp-route-id="@product.Id">@product.Name</a>
+                </div>
+            }
+        </div>
+        <!-- Related Products END -->
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-</body>
-</html>
+    <div class="row">
+        <!-- Bottom Navigation START -->
+        <div class="col-12">
+            <a asp-controller="Product" asp-action="Index">Tillbaka till produktlistningen</a>
+            <br />
+            <a asp-controller="Home" asp-action="Index">Tillbaka till startsidan</a>
+        </div>
+        <!-- Bottom Navigation END -->
+    </div>
+</div>
