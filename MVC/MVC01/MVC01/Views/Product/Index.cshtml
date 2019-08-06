@@ -1,21 +1,20 @@
 ﻿@*@model IEnumerable<Product>*@
 @model ProductViewModel
 
-<div class="container">
 
-    <h1>Products</h1>
+<h1>Products</h1>
 
-    <a asp-controller="Home" asp-action="Index"> &lt;&lt; Tillbaka till startsidan</a>
-    <br />
-    <br />
-    <a asp-controller="Product" asp-action="AddProduct">Skapa ny produkt &gt;&gt;</a>
-    <br />
+<a asp-controller="Home" asp-action="Index"> &lt;&lt; Tillbaka till startsidan</a>
+<br />
+<br />
+<a asp-controller="Product" asp-action="AddProduct">Skapa ny produkt &gt;&gt;</a>
+<br />
 
-    <hr />
+<hr />
 
-    <div class="row">
-        @foreach (var product in Model.Products)
-        {
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
         <div class="col-12">
 
             <a asp-action="GetProduct" asp-route-id="@product.Id">@product.Name</a>
@@ -28,12 +27,6 @@
             <div class="alert alert-info">@product.Description</div>
 
         </div>
-            <hr />
-        }
-    </div>
-
-
-    <img src="~/img/banner1.svg" />
-
+        <hr />
+    }
 </div>
-

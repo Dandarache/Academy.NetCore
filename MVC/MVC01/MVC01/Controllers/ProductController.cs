@@ -72,7 +72,7 @@ namespace MVC01.Controllers
                 Products = allProducts
             };
 
-            return View("DisplayProduct", viewModel);
+            return View("GetProduct", viewModel);
         }
 
         [HttpGet] // Är default för alla ActionResult-metoder.

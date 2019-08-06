@@ -1,46 +1,44 @@
 ﻿@model ProductViewModel
 
-<div class="container">
 
-    <h1>Products</h1>
+<h1>Products</h1>
 
-    <a asp-controller="Home" asp-action="Index"> &lt;&lt; Tillbaka till startsidan</a>
+<a asp-controller="Home" asp-action="Index"> &lt;&lt; Tillbaka till startsidan</a>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-warning">
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning">
 
-                <h2>Lägg till ny produkt</h2>
+            <h2>Lägg till ny produkt</h2>
 
-                <form method="post" asp-action="AddProduct" >
+            <form method="post" asp-action="AddProduct">
 
-                    <label asp-for="CurrentProduct.Id">Id</label>
-                    <input asp-for="CurrentProduct.Id" />
-                    <br />
+                <label asp-for="CurrentProduct.Id">Id</label>
+                <input asp-for="CurrentProduct.Id" />
+                <br />
 
-                    <label asp-for="CurrentProduct.Name">Produktnamn</label>
-                    <input asp-for="CurrentProduct.Name" />
-                    <br />
+                <label asp-for="CurrentProduct.Name">Produktnamn</label>
+                <input asp-for="CurrentProduct.Name" />
+                <br />
 
-                    <label asp-for="CurrentProduct.Description">Beskrivning</label>
-                    <input asp-for="CurrentProduct.Description" />
-                    <br />
+                <label asp-for="CurrentProduct.Description">Beskrivning</label>
+                <input asp-for="CurrentProduct.Description" />
+                <br />
 
-                    <label asp-for="CurrentProduct.ProductNumber">Produktnummer</label>
-                    <input asp-for="CurrentProduct.ProductNumber" />
-                    <br />
+                <label asp-for="CurrentProduct.ProductNumber">Produktnummer</label>
+                <input asp-for="CurrentProduct.ProductNumber" />
+                <br />
 
-                    <label asp-for="CurrentProduct.Supplier">Leverantör</label>
-                    <input asp-for="CurrentProduct.Supplier" />
-                    <br />
+                <label asp-for="CurrentProduct.Supplier">Leverantör</label>
+                <input asp-for="CurrentProduct.Supplier" />
+                <br />
 
-                    <button type="submit">Skapa produkt</button>
+                <button type="submit">Skapa produkt</button>
 
-                </form>
+            </form>
 
-            </div>
         </div>
     </div>
-    
 </div>
+
 

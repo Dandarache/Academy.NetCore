@@ -1,0 +1,38 @@
+﻿@model ProductViewModel
+@*@model Product*@
+
+
+<div class="row">
+
+    <!-- Current Product START -->
+    <div class="col-8">
+        <h1>@Model.CurrentProduct.Name</h1>
+        <h2>@Model.CurrentProduct.ProductNumber</h2>
+        <p>@Model.CurrentProduct.Description</p>
+    </div>
+    <!-- Current Product END -->
+    <!-- Related Products START -->
+    <div class="col-4">
+        @foreach (var product in Model.Products)
+        {
+            if (!Model.CurrentProduct.Id.Equals(product.Id))
+            {
+                <div class="alert alert-primary">
+                    <a asp-controller="Product" asp-action="GetProduct" asp-route-id="@product.Id">@product.Name</a>
+                </div>
+            }
+        }
+    </div>
+    <!-- Related Products END -->
+
+</div>
+
+<div class="row">
+    <!-- Bottom Navigation START -->
+    <div class="col-12">
+        <a asp-controller="Product" asp-action="Index">Tillbaka till produktlistningen</a>
+        <br />
+        <a asp-controller="Home" asp-action="Index">Tillbaka till startsidan</a>
+    </div>
+    <!-- Bottom Navigation END -->
+</div>
