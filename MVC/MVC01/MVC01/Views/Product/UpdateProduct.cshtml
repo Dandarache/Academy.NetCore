@@ -23,7 +23,7 @@
                 <br />
 
                 <label asp-for="CurrentProduct.Description">Beskrivning</label>
-                <input asp-for="CurrentProduct.Description" />
+                <textarea asp-for="CurrentProduct.Description"></textarea>
                 <br />
 
                 <label asp-for="CurrentProduct.ProductNumber">Produktnummer</label>
@@ -41,4 +41,14 @@
         </div>
     </div>
 </div>
+
+@section FooterScripts {
+
+    <script>
+
+        alert('Detta skript körs bara på denna sida eftersom att det finns med i FooterScripts section.');
+
+    </script>
+
+}
 
