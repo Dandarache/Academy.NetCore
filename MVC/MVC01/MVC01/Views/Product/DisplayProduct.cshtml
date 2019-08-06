@@ -17,9 +17,12 @@
         <div class="col-4">
             @foreach (var product in Model.Products)
             {
-                <div class="alert alert-primary">
-                    <a asp-controller="Product" asp-action="Get" asp-route-id="@product.Id">@product.Name</a>
-                </div>
+                if (!Model.CurrentProduct.Id.Equals(product.Id))
+                {
+                    <div class="alert alert-primary">
+                        <a asp-controller="Product" asp-action="Get" asp-route-id="@product.Id">@product.Name</a>
+                    </div>
+                }
             }
         </div>
         <!-- Related Products END -->
