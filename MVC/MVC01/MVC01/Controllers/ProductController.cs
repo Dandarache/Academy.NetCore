@@ -51,14 +51,14 @@ namespace MVC01.Controllers
         {
             var model = "Dan Jansson is best!";
             //return View();
-            return View("~/Views/Product/Dan.cshtml", model);
+            return View("~/Views/Dummy/Dan.cshtml", model);
             //return View("Danne", model);
 
         }
 
         #endregion
 
-        public IActionResult Get(int id)
+        public IActionResult GetProduct(int id)
         {
             //var productRepository = new ProductRepository();
 
@@ -89,13 +89,45 @@ namespace MVC01.Controllers
             return View(viewModel);
         }
 
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult Index(Product currentProduct)
+        public IActionResult AddProduct(Product currentProduct)
         {
             _productRepository.Add(currentProduct);
 
-            return View("ProductAdded");
+            //return View("ProductAdded");
+            return RedirectToAction("Index");
         }
 
+        public IActionResult UpdateProduct(int id)
+        {
+            var product = _productRepository.GetById(id);
+
+            var viewModel = new ProductViewModel
+            {
+                CurrentProduct = product,
+            };
+
+            return View("UpdateProduct", viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProduct(Product currentProduct)
+        {
+            _productRepository.Update(currentProduct);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteProduct(int id)
+        {
+            _productRepository.Delete(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

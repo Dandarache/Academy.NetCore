@@ -56,6 +56,67 @@ namespace MVC01.Services
             SaveProducts();
         }
 
+        /// <summary>
+        /// Updates a product in the repository.
+        /// </summary>
+        /// <param name="product">The product to be updated.</param>
+        public void Update(Product product)
+        {
+            if (product == null)
+            {
+                throw new ApplicationException("Product cannot be null if it should be updated.");
+            }
+
+            var productId = product.Id;
+
+            var updateProduct =
+                _products.FirstOrDefault(a => a.Id.Equals(productId));
+
+            if (updateProduct == null)
+            {
+                throw new ApplicationException("Product doesn't exist in ProductRepository.");
+            }
+
+            _products.Remove(updateProduct);
+
+            _products.Add(product);
+
+            SaveProducts();
+        }
+
+        /// <summary>
+        /// Deletes a product from the repository.
+        /// </summary>
+        /// <param name="product">The product to be deleted.</param>
+        public void Delete(Product product)
+        {
+            var productId = product.Id;
+
+            Delete(productId);
+        }
+
+        /// <summary>
+        /// Deletes a product from the repository.
+        /// </summary>
+        /// <param name="productId">Product id of to product be deleted.</param>
+        public void Delete(int productId)
+        {
+            var deleteProduct =
+                _products.FirstOrDefault(a => a.Id.Equals(productId));
+
+            if (deleteProduct == null)
+            {
+                return;
+            }
+
+            _products.Remove(deleteProduct);
+
+            SaveProducts();
+        }
+
+        /// <summary>
+        /// Save all products as JSON data in a text file.
+        /// </summary>
         private void SaveProducts()
         {
             var contentRootPath = _environment.ContentRootPath;
@@ -66,6 +127,10 @@ namespace MVC01.Services
             File.WriteAllText(filePath, productData);
         }
 
+        /// <summary>
+        /// Load all products from text file.
+        /// </summary>
+        /// <returns>A list of product objects.</returns>
         private List<Product> LoadProducts()
         {
             var contentRootPath = _environment.ContentRootPath;
@@ -76,33 +141,6 @@ namespace MVC01.Services
             var products = JsonConvert.DeserializeObject<List<Product>>(productData);
 
             return products;
-        }
-
-        /// <summary>
-        /// Updates a product in the repository.
-        /// </summary>
-        /// <param name="product">The product to be updated.</param>
-        public void Update(Product product)
-        {
-
-        }
-
-        /// <summary>
-        /// Deletes a product from the repository.
-        /// </summary>
-        /// <param name="product">The product to be deleted.</param>
-        public void Delete(Product product)
-        {
-
-        }
-
-        /// <summary>
-        /// Deletes a product from the repository.
-        /// </summary>
-        /// <param name="productId">Product id of to product be deleted.</param>
-        public void Delete(int productId)
-        {
-
         }
 
         /// <summary>

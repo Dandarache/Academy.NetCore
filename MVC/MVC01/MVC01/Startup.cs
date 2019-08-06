@@ -45,6 +45,8 @@ namespace MVC01
             });
 
             app.UseStatusCodePages();
+            app.UseStaticFiles();
+
 
             //app.Run(async (context) =>
             //{

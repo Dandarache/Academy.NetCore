@@ -6,58 +6,34 @@
     <h1>Products</h1>
 
     <a asp-controller="Home" asp-action="Index"> &lt;&lt; Tillbaka till startsidan</a>
+    <br />
+    <br />
+    <a asp-controller="Product" asp-action="AddProduct">Skapa ny produkt &gt;&gt;</a>
+    <br />
+
+    <hr />
 
     <div class="row">
         @foreach (var product in Model.Products)
         {
-            <div class="col-12">
+        <div class="col-12">
 
-                <a asp-action="Get" asp-route-id="@product.Id">@product.Name</a>
-                @*<a href="/product/get/@product.Id">@product.Name</a>*@
+            <a asp-action="GetProduct" asp-route-id="@product.Id">@product.Name</a>
 
-                <br />
-                <div class="alert alert-info">@product.Description</div>
+            [<a asp-action="DeleteProduct" asp-route-id="@product.Id">Radera</a>]
+            [<a asp-action="UpdateProduct" asp-route-id="@product.Id">Updatera</a>]
+            @*<a href="/product/get/@product.Id">@product.Name</a>*@
 
-            </div>
+            <br />
+            <div class="alert alert-info">@product.Description</div>
+
+        </div>
             <hr />
         }
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-warning">
 
-                <h2>Lägg till produkt</h2>
-
-                <form method="post">
-
-                    <label asp-for="CurrentProduct.Id">Id</label>
-                    <input asp-for="CurrentProduct.Id" />
-                    <br />
-
-                    <label asp-for="CurrentProduct.Name">Produktnamn</label>
-                    <input asp-for="CurrentProduct.Name" />
-                    <br />
-
-                    <label asp-for="CurrentProduct.Description">Beskrivning</label>
-                    <input asp-for="CurrentProduct.Description" />
-                    <br />
-
-                    <label asp-for="CurrentProduct.ProductNumber">Produktnummer</label>
-                    <input asp-for="CurrentProduct.ProductNumber" />
-                    <br />
-
-                    <label asp-for="CurrentProduct.Supplier">Leverantör</label>
-                    <input asp-for="CurrentProduct.Supplier" />
-                    <br />
-
-                    <button type="submit">Spara</button>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
+    <img src="~/img/banner1.svg" />
 
 </div>
 
