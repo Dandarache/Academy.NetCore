@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using MVC01.Services;
 
 namespace MVC01
 {
@@ -16,6 +17,8 @@ namespace MVC01
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<ProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using MVC01.Models;
 using MVC01.Services;
@@ -14,11 +15,28 @@ namespace MVC01.Controllers
     {
         private ProductRepository _productRepository;
 
-        public ProductController()
+        /// <summary>
+        /// Dependency injection kommer att ge oss en instans av ProductRepository,
+        /// </summary>
+        /// <param name="productRepository"></param>
+        public ProductController(ProductRepository productRepository)
         {
-            _productRepository = new ProductRepository();
+            _productRepository = productRepository;
         }
+        
+        //private IHostingEnvironment _env;
+        //public ProductController(IHostingEnvironment hostingEnvironment)
+        //{
+        //    _env = hostingEnvironment;
+        //    _productRepository = new ProductRepository(_env);
+        //}
 
+        //public ProductController()
+        //{
+        //    _productRepository = new ProductRepository();
+        //}
+
+        #region Dummy methods
 
         [Route("testy")]
         public IActionResult Testy()
@@ -38,6 +56,8 @@ namespace MVC01.Controllers
 
         }
 
+        #endregion
+
         public IActionResult Get(int id)
         {
             //var productRepository = new ProductRepository();
@@ -55,12 +75,26 @@ namespace MVC01.Controllers
             return View("DisplayProduct", viewModel);
         }
 
+        [HttpGet] // Är default för alla ActionResult-metoder.
         public IActionResult Index()
         {
             //var productRepository = new ProductRepository();
+            //var model = _productRepository.GetAll();
 
-            var model = _productRepository.GetAll();
-            return View(model);
+            var viewModel = new ProductViewModel
+            {
+                Products = _productRepository.GetAll()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Index(Product currentProduct)
+        {
+            _productRepository.Add(currentProduct);
+
+            return View("ProductAdded");
         }
 
     }

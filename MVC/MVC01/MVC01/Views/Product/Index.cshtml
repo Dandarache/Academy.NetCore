@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Product>
+﻿@*@model IEnumerable<Product>*@
+@model ProductViewModel
 
 <div class="container">
 
@@ -7,7 +8,7 @@
     <a asp-controller="Home" asp-action="Index"> &lt;&lt; Tillbaka till startsidan</a>
 
     <div class="row">
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
             <div class="col-12">
 
@@ -22,14 +23,41 @@
         }
     </div>
 
-    @*<ul>
-            @foreach (var product in Model)
-            {
-            <li>
-                <a href="/product/get/@product.Id">@product.Name</a>
-            </li>
-            }
-        </ul>*@
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning">
+
+                <h2>Lägg till produkt</h2>
+
+                <form method="post">
+
+                    <label asp-for="CurrentProduct.Id">Id</label>
+                    <input asp-for="CurrentProduct.Id" />
+                    <br />
+
+                    <label asp-for="CurrentProduct.Name">Produktnamn</label>
+                    <input asp-for="CurrentProduct.Name" />
+                    <br />
+
+                    <label asp-for="CurrentProduct.Description">Beskrivning</label>
+                    <input asp-for="CurrentProduct.Description" />
+                    <br />
+
+                    <label asp-for="CurrentProduct.ProductNumber">Produktnummer</label>
+                    <input asp-for="CurrentProduct.ProductNumber" />
+                    <br />
+
+                    <label asp-for="CurrentProduct.Supplier">Leverantör</label>
+                    <input asp-for="CurrentProduct.Supplier" />
+                    <br />
+
+                    <button type="submit">Spara</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 
