@@ -36,28 +36,6 @@ namespace MVC01.Controllers
         //    _productRepository = new ProductRepository();
         //}
 
-        #region Dummy methods
-
-        [Route("testy")]
-        public IActionResult Testy()
-        {
-            return Ok("Testy funkar!");
-            //return NotFound("Testy funkar!");
-            //return View();
-        }
-
-        //[Route("dan")]
-        public IActionResult Dan()
-        {
-            var model = "Dan Jansson is best!";
-            //return View();
-            return View("~/Views/Dummy/Dan.cshtml", model);
-            //return View("Danne", model);
-
-        }
-
-        #endregion
-
         public IActionResult GetProduct(int id)
         {
             //var productRepository = new ProductRepository();
