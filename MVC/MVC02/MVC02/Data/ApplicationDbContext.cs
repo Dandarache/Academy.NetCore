@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Mvc02.Models.Entities;
 
-namespace MVC02.Data
+namespace Mvc02.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -14,5 +14,6 @@ namespace MVC02.Data
         {
         }
         public DbSet<Mvc02.Models.Entities.Product> Product { get; set; }
+        public DbSet<Mvc02.Models.Entities.Category> Category { get; set; }
     }
 }

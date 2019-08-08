@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MVC02.Data.Migrations
+namespace Mvc02.Data.Migrations
 {
     public partial class Productmigration : Migration
     {

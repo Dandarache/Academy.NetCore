@@ -1,16 +1,8 @@
-﻿@model Mvc02.Models.Entities.Product
+﻿@model Mvc02.Models.ViewModels.ProductViewModel
 
 @{
+    ViewData["Title"] = "CREATE - Hello World Academy";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
 
 <h4>Product</h4>
 <hr />
@@ -19,25 +11,34 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Product.Name" class="control-label"></label>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="ForSale" /> @Html.DisplayNameFor(model => model.ForSale)
+                        <input asp-for="Product.ForSale" /> @Html.DisplayNameFor(model => model.Product.ForSale)
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+                <label asp-for="Product.CategoryId" class="control-label"></label>
+                <select asp-for="Product.CategoryId" class="form-control" asp-items="Model.AllCategories"></select>
+
+                @*<select name="product.CategoryId">
+                        <option value=""></option>
+                        <option value="1">Bilar</option>
+                        <option value="2">Cyklar</option>
+                        <option value="3">Mopeder</option>
+                    </select>*@
+
+                @*<select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -49,6 +50,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-</body>
-</html>

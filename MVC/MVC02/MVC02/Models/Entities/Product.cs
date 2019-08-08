@@ -7,12 +7,12 @@ namespace Mvc02.Models.Entities
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Obligatoriskt")]
+        [Required(ErrorMessage = "Obligatoriskt")]                                                                                                                                          
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Obligatoriskt")]
-        [Range(0, 1000, ErrorMessage = "Måste va mellan 0 och 1000")]
-        [Column(TypeName = "decimal(18,2)")]
+        [Range(10000, 1000000, ErrorMessage = "Måste vara mellan 10000 och 1000000 kronor")]
+        [Column(TypeName = "decimal(18,2)")]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         public decimal Price { get; set; }
 
         public bool ForSale { get; set; }

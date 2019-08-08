@@ -1,8 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-MVC02-8C709AB8-9F1B-4E67-ADCB-F33A3169DAB1</UserSecretsId>
+    <RootNamespace>Mvc02</RootNamespace>
+    <AssemblyName>Mvc02</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
