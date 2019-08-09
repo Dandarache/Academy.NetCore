@@ -13,13 +13,13 @@ namespace MVC01.Controllers
 {
     public class ProductController : Controller
     {
-        private ProductRepository _productRepository;
+        private IProductRepository _productRepository;
 
         /// <summary>
         /// Dependency injection kommer att ge oss en instans av ProductRepository,
         /// </summary>
         /// <param name="productRepository"></param>
-        public ProductController(ProductRepository productRepository)
+        public ProductController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }

@@ -12,7 +12,7 @@ namespace MVC01.Services
     /// <summary>
     /// Repository class for products.
     /// </summary>
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
         IHostingEnvironment _environment;
         List<Product> _products;
@@ -39,7 +39,7 @@ namespace MVC01.Services
         /// <returns>A product or null if the product id didn't exist.</returns>
         public Product GetById(int id)
         {
-            var selectedProduct = 
+            var selectedProduct =
                 _products.FirstOrDefault(prod => prod.Id.Equals(id));
 
             return selectedProduct;

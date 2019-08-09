@@ -18,7 +18,9 @@ namespace MVC01
         {
             services.AddMvc();
 
-            services.AddTransient<ProductRepository, ProductRepository>();
+            //services.AddTransient<ProductRepository, ProductRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            //services.AddTransient<IProductRepository, MyOtherProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the 
