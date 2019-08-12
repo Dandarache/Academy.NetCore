@@ -13,10 +13,10 @@ namespace WebApiDemos.Models
 
         public static Planet ParsePlanet(string planetData)
         {
-            Regex regex1 = new Regex("(&|^)Name=([^&$]*)");
+            Regex regex1 = new Regex("(&|^|\\?)Name=([^&$]*)");
             var planetName = regex1.Match(planetData).Groups[2].Value;
 
-            Regex regex2 = new Regex("(&|^)Size=([^&$]*)");
+            Regex regex2 = new Regex(@"(&|^|\?)Size=([^&$]*)");
             var planetSizeString = regex2.Match(planetData).Groups[2].Value;
             int.TryParse(planetSizeString, out int planetSize);
 

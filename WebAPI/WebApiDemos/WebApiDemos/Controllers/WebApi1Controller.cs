@@ -27,6 +27,14 @@ namespace WebApiDemos.Controllers
             return Ok($"Ny planet {planet.Name} skapad med storleken {planet.Size}.");
         }
 
+        [Route("SearchPlanet")]
+        public IActionResult SearchPlanet()
+        {
+            string formData = Request.QueryString.ToString();
+            Planet planet = Planet.ParsePlanet(formData);
+
+            return Ok($"Söker i databasen efter planeter med namn {planet.Name} och storlek {planet.Size}");
+        }
 
     }
 }
