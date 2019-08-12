@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebApiDemos.Models;
 
@@ -20,15 +21,26 @@ namespace WebApiDemos.Controllers
             {
                 formContent = reader.ReadToEndAsync().Result;
             }
-            
+
             // Du behöver göra "Planet"-klassen och metoden "ParsePlanet"
             Planet planet = ParsePlanet(formContent);
-            return Ok("......");
+            return Ok($"Ny planet {planet.Name} skapad med storleken {planet.Size}.");
         }
 
         private Planet ParsePlanet(string formContent)
         {
-            throw new NotImplementedException();
+            Regex regex1 = new Regex("(&|^)Name=([^&$]*)");
+            var planetName = regex1.Match(formContent).Groups[2].Value;
+
+            Regex regex2 = new Regex("(&|^)Size=([^&$]*)");
+            var planetSizeString = regex2.Match(formContent).Groups[2].Value;
+            int.TryParse(planetSizeString, out int planetSize);
+
+            return new Planet
+            {
+                Name = planetName,
+                Size = planetSize
+            };
         }
     }
 }
