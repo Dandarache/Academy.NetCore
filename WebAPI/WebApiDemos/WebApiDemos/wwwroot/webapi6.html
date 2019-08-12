@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/plain.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1>WebApi6</h1>
+
+    <!--<h2>Formelement - allt som textrutor</h2>
+
+    <form method="post" action="/webapi6/AddDocument">
+        Titel: <input type="text" name="Title" value="Mitt dokument" />
+        Antal sidor: <input type="text" name="NumberOfPages" value="25" />
+        Sammanfattning: <input type="text" name="HasSummary" value="true" />
+        Publiceras: <input type="text" name="PublishedFrom" value="2017-11-21T13:20" />
+        Pris: <input type="text" name="Price" value="120.4" />
+        Typ: <input type="text" name="Type" value="WordDocument" />
+        Taggar: <input type="text" name="TagList" value="PDF,Powerpoint" />
+        Betyg: <input type="text" name="Rating" value="3" />
+        <button type="submit">Lägg till dokument</button>
+    </form>
+
+    <hr />-->
+
+    <h2>Lägg till dokument</h2>
+
+    <form method="post" action="/webapi6/AddDocument">
+        Titel: <input type="text" name="Title" value="Mitt dokument" />
+        Antal sidor: <input type="number" name="NumberOfPages" value="25" />
+        Sammanfattning finns: <input type="checkbox" name="HasSummary" checked="checked" value="true" />
+        Publiceras: <input type="datetime-local" name="PublishedFrom" value="2017-11-21T13:20" />
+        Pris: <input type="number" name="Price" value="120.4" />
+        Typ:
+        <select name="Type">
+            <option value="PDF">PDF</option>
+            <option value="WordDocument">Word dokument</option>
+            <option value="Powerpoint">Powerpoint</option>
+        </select>
+        Taggar:
+        <select name="TagList" multiple>
+            <option value="Genombrott">Genombrott</option>
+            <option value="Forskning">Forskning</option>
+            <option value="Kultur">Kultur</option>
+        </select>
+        Betyg: <br />
+        (1)<input type="radio" name="Rating" value="1" />
+        (2)<input type="radio" name="Rating" value="2" />
+        (3)<input type="radio" name="Rating" value="3" checked />
+        (4)<input type="radio" name="Rating" value="4" />
+        (5)<input type="radio" name="Rating" value="5" />
+
+        <button type="submit">Ok</button>
+    </form>
+
+    <hr />
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿body {
+    font-family:Arial;
+}
+button, a, input, select, textarea {
+    display: block
+}
+
+input[type=radio] {
+    display: inline;
+}
+
+table {
+    border-spacing: 0
+}
+
+td {
+    border: solid 1px #ddd;
+    padding: 5px 10px;
+}

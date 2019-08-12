@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/plain.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <h1>Länkar till Lab</h1>
+
+    <p><a href="/lab1/lab">Lab</a></p>
+    <p><a href="/lab1/lab?Planet=Saturnus&Size=123">Lab med parametrar</a></p>
+
+    <hr />
+
+    <h1>Get formulär till Lab</h1>
+
+    <form method="get" action="/lab1/Lab">
+        Planet: <input name="Name" value="Saturnus" />
+        Storlek: <input name="Size" value="123" />
+        <button>Ok</button>
+    </form>
+
+    <hr />
+
+    <h1>Post formulär till Lab</h1>
+
+    <form method="post" action="/lab1/Lab">
+        Planet: <input name="Name" value="Saturnus" />
+        Storlek: <input name="Size" value="123" />
+        <button>Ok</button>
+    </form>
+
+    <hr />
+
+    <h1>Labdetails</h1>
+
+    <form method="get" action="/lab1/labdetails">
+        Planet: <input name="Name" value="Saturnus" />
+        Storlek: <input name="Size" value="123" />
+        <button>Ok</button>
+    </form>
+
+    <hr />
+
+</body>
+</html>
