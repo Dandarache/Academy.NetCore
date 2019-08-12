@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using WebApiDemos.Models;
 
@@ -32,7 +34,17 @@ namespace WebApiDemos.Controllers
             if (!ModelState.IsValid)
             {
                 //return BadRequest("Någonting saknas...");
-                return BadRequest(ModelState);
+                //return BadRequest(ModelState);
+
+                StringBuilder errorText = new StringBuilder();
+                foreach (var error in ModelState)
+                {
+                    if (ModelState[error.Key].ValidationState != ModelValidationState.Valid)
+                    {
+                        errorText.AppendLine($"{error.Key} - {ModelState[error.Key].Errors[0].ErrorMessage}");
+                    }
+                }
+                return BadRequest(errorText.ToString());
             }
 
             return Ok("Mötet skapades.");
