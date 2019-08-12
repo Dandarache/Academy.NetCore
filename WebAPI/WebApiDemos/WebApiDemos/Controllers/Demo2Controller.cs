@@ -14,7 +14,9 @@ namespace WebApiDemos.Controllers
         public IActionResult CheckFileFormat()
         {
             string fileFormatData = Request.QueryString.Value;
-            string fileFormat = new Regex(@"(&|^|\?)fileformat=([^&$]*)").Match(fileFormatData).Groups[2].Value;
+
+            //string fileFormat = new Regex(@"(&|^|\?)fileformat=([^&$]*)").Match(fileFormatData).Groups[2].Value;
+            string fileFormat = Request.Query["fileformat"];
 
             if (fileFormat.Length != 3)
             {
