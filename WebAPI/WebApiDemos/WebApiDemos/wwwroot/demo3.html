@@ -4,27 +4,43 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="css/plain.css" rel="stylesheet" />
-
 </head>
 <body>
 
-    <h2>Möte</h2>
+    <h1>Demo 3</h1>
 
-    <form method="post" action="/demo3/AddMeeting">
+    <h2>Kontrollera medlem (GET)</h2>
 
-        Namn: <input name="name" />
-        Agenda: <textarea name="agenda"></textarea>
-        <button type="submit">Ok</button>
-
+    <form method="get" action="/demo3/checkmemberget">
+        <label>Användarnamn</label>
+        <input name="username" type="text" />
+        <label>
+            <input name="isMember" type="checkbox" value="true" />
+            Medlem
+        </label>
+        <label>Förnamn</label>
+        <input name="firstNameText" type="text" />
+        <label>Efternamn</label>
+        <input name="lastName" type="text" />
+        <button type="submit">Gör något...</button>
     </form>
 
-    <h2>Möte - validering med attribut</h2>
-    <form method="post" action="/demo3/AddMeetingWithAttribute">
+    <hr />
 
-        Namn: <input name="name" />
-        Agenda: <textarea name="agenda"></textarea>
-        <button type="submit">Ok</button>
+    <h2>Kontrollera medlem (POST)</h2>
 
+    <form method="post" action="/demo3/checkmemberpost">
+        <label>Användarnamn</label>
+        <input name="username" type="text" value="0" />
+        <label>
+            <input name="isMember" type="checkbox" value="true" />
+            Medlem
+        </label>
+        <label>Förnamn</label>
+        <input name="firstName" type="text" value="0" />
+        <label>Efternamn</label>
+        <input name="lastName" type="text" value="0" />
+        <button type="submit">Gör något...</button>
     </form>
 
 </body>
