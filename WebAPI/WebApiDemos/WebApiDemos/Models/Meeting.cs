@@ -10,8 +10,10 @@ namespace WebApiDemos.Models
     {
         [Required(ErrorMessage = "Namn är obligatoriskt.")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "Plats är obligatoriskt.")]
         public string Place { get; set; }
+
         public string Agenda { get; set; }
     }
 }

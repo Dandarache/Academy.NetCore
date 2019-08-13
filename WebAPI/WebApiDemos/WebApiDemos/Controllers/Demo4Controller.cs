@@ -33,9 +33,6 @@ namespace WebApiDemos.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //return BadRequest("Någonting saknas...");
-                //return BadRequest(ModelState);
-
                 StringBuilder errorText = new StringBuilder();
                 foreach (var error in ModelState)
                 {
@@ -45,8 +42,9 @@ namespace WebApiDemos.Controllers
                     }
                 }
                 return BadRequest(errorText.ToString());
-            }
 
+                //return BadRequest(ModelState);
+            }
             return Ok("Mötet skapades.");
         }
     }
