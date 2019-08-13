@@ -8,7 +8,7 @@ function render() {
 
 function isInteger(x) {
 
-    return x == parseInt(x);
+    return x === parseInt(x);
 }
 async function squareRoot() {
     errorMessages = [];
@@ -49,6 +49,7 @@ async function squareRoot() {
 
         result = "";
         errorMessages = await response.json();
+        alert(errorMessages.join('<br />'));
         console.log("errorMessages", errorMessages);
     } else {
         result = "";
