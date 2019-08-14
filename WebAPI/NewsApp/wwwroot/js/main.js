@@ -1,57 +1,102 @@
 ﻿
+// Globala variabler som hanterar tillståndet i JavaScript-applikationen, dvs SPA.
+let state = {
+    allCategories: [],
+    allNews: [],
+    activeArea: null, // Vilken yta som visas under tabellen (ex addArea)
+    updateArea: null,
+    addArea: null
+};
 
-let allNews = [];
+// Funktionsanrop som gör att data hämtas och uppdateras då sidan laddats.
+init();
+
+////////////////////////////////////////////////////
+// Funktion som anropas när sidan laddas
+////////////////////////////////////////////////////
+
+async function init() {
+
+    await updateAll();
+}
+
+////////////////////////////////////////////////////
+// Funktioner renderar och uppdaterar gränsnittet
+////////////////////////////////////////////////////
+
+function render() {
+    // Uppdatera gränsnittet utifrån "state". Denna gör inga ajaxanrop.
+
+    // Nyhetstabellen
+
+    let html = "<table>";
+    html += `<tr><th>Id</th><th>Header</th><th>Category</th><th>Created</th><th>Updated</th><th>Update</th><th>Delete</th></tr>`;
+    for (let news of state.allNews) {
+        html += `<tr>
+                    <td>${news.id}</td>
+                    <td>${news.header}</td>
+                    <td>${news.category === null ? "" : news.category.name}</td>
+                    <td>${formatDate(news.createdDate)}</td>
+                    <td>${formatDate(news.updatedDate)}</td>
+                    <td><button onclick="showUpdateNewsForm(${news.id})">Update</button></td>
+                    <td><button onclick="deleteNews(${news.id})">X</button></td>
+                 </tr>`;
+    }
+    html += "</table>";
+
+    byId("newsList").innerHTML = html;
+
+    // Areor
+
+    byId("addArea").style.display = "none";
+    byId("updateArea").style.display = "none";
+    byId("statArea").style.display = "none";
+
+    if (state.activeArea !== null)
+        byId(state.activeArea).style.display = "block";
+
+    // Category dropdown
+
+    fillDropdown("addAreaCategory", state.allCategories, "id", "name");
+    fillDropdown("updateAreaCategory", state.allCategories, "id", "name");
+
+    // Statistik
+    byId("nrOfNews").innerText = state.allNews.length;
+
+    // Formulär för uppdatera nyhet
+    if (state.updateArea !== null) {
+        byId("updateAreaId").value = state.updateArea.id;
+        byId("updateAreaHeader").value = state.updateArea.header;
+        byId("updateAreaIntro").value = state.updateArea.intro;
+        byId("updateAreaBody").value = state.updateArea.body;
+        byId("updateAreaCategory").value = state.updateArea.selectedCategory;
+        byId("updateAreaError").innerHTML = state.updateAreaError;
+    }
+
+    // Formulär för lägg till nyhet
+    if (state.addArea !== null) {
+        byId("addAreaHeader").value = state.addArea.header;
+        byId("addAreaIntro").value = state.addArea.intro;
+        byId("addAreaBody").value = state.addArea.body;
+        byId("addAreaCategory").value = state.addArea.selectedCategory;
+        byId("addAreaError").innerHTML = state.addAreaError;
+    }
+}
 
 function clickShowAddNews() {
-
-    let addForm = document.getElementById('addArea');
-    addForm.style.display = 'block';
-
-}
-
-async function clickAddNews() {
-
-    // POST /api/news/add
-
-    //Header: <input id="addAreaHeader" type="text" />
-    //Category: <select id="addAreaCategory"></select>
-    //Intro: <input id="addAreaIntro" type="text" />
-    //Body: <input id="addAreaBody" type="text" />
-
-    alert(12);
-
-    let newNews = {};
-    newNews.header = document.getElementById('addAreaHeader').value;
-    newNews.intro = document.getElementById('addAreaIntro').value;
-    newNews.body = document.getElementById('addAreaBody').value;
-
-    console.log(newNews);
-
-    let response = await fetch('api/news', {
-        method: 'POST',
-        body: JSON.stringify(newNews),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-
-    if (response.status === 200) {
-        document.getElementById('addAreaHeader').value = '';
-        document.getElementById('addAreaIntro').value = '';
-        document.getElementById('addAreaBody').value = '';
-
-        let addForm = document.getElementById('addArea');
-        addForm.style.display = 'hidden';
-    }
-    else if (response.status === 400) {
-        console.log('Invalid input data.');
-    }
-
-    getAllNews();
+    state.addAreaError = null;
+    state.activeArea = "addArea";
     render();
-
 }
 
+function clickStatArea() {
+    state.activeArea = "statArea";
+    render();
+}
+
+////////////////////////////////////////////////////
+// Funktioner anropar webapi.
+////////////////////////////////////////////////////
 
 async function clickRecreate() {
     //alert("clickRecreate()");
@@ -65,8 +110,7 @@ async function clickRecreate() {
 
     if (response.status === 204) {
         alert("Database Recreated");
-
-        // ...
+        await updateAll();
     }
     else {
         console.log('Något vart fel: ' + response);
@@ -87,8 +131,7 @@ async function clickSeed() {
 
     if (response.status === 204) {
         alert("Data added by seed function.");
-
-        // ...
+        await updateAll();
     }
     else {
         console.log('Something went wrong: ' + response);
@@ -98,44 +141,117 @@ async function clickSeed() {
 
 }
 
-function clickStatArea() {
-    getAllNews();
+async function clickAddNews() {
+
+    state.addArea = {};
+    state.addArea.header = byId("addAreaHeader").value;
+    state.addArea.intro = byId("addAreaIntro").value;
+    state.addArea.body = byId("addAreaBody").value;
+    state.addArea.selectedCategory = getSelectedValue("addAreaCategory");
+
+    let response = await fetch("api/News", {
+        method: "POST",
+        body: JSON.stringify(
+            {
+                header: state.addArea.header,
+                intro: state.addArea.intro,
+                body: state.addArea.body,
+                category: {
+                    id: state.addArea.selectedCategory
+                }
+            }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (response.status === 200) {
+        state.addAreaError = null;
+        state.addArea.header = "";
+        state.addArea.intro = "";
+        state.addArea.body = "";
+        await updateNewsTable();
+
+        state.activeArea = null;
+        render();    
+
+
+    } else if (response.status === 400) {
+        state.addAreaError = errorList(await response.json());
+
+    } else {
+        console.log("Unexpected error", response);
+    }
+    render();
+
+}
+
+async function clickUpdateNews() {
+
+    state.updateArea = {}
+    state.updateArea.id = byId("updateAreaId").value;
+    state.updateArea.header = byId("updateAreaHeader").value;
+    state.updateArea.intro = byId("updateAreaIntro").value;
+    state.updateArea.body = byId("updateAreaBody").value;
+    state.updateArea.selectedCategory = getSelectedValue("updateAreaCategory");
+
+    let response = await fetch("api/News", {
+        method: "PUT",
+        body: JSON.stringify(
+            {
+                id: state.updateArea.id,
+                header: state.updateArea.header,
+                intro: state.updateArea.intro,
+                body: state.updateArea.body,
+                category: {
+                    id: state.updateArea.selectedCategory
+                }
+            }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (response.status === 204) {
+        state.updateAreaError = null;
+        state.updateArea.id = "";
+        state.updateArea.header = "";
+        state.updateArea.intro = "";
+        state.updateArea.body = "";
+        await updateNewsTable();
+
+        state.activeArea = null;
+        render();    
+
+    } else if (response.status === 400) {
+        state.updateAreaError = errorList(await response.json());
+
+    } else if (response.status === 404) {
+        console.log(`News with id = ${state.updateArea.id} not found`);
+    } else {
+        console.log("Unexpected error", response);
+    }
     render();
 }
 
-//function clickAddNews() {
-//    (async () => {
-//        const rawResponse = await fetch('https://httpbin.org/post', {
-//            method: 'POST',
-//            headers: {
-//                'Accept': 'application/json',
-//                'Content-Type': 'application/json'
-//            },
-//            body: JSON.stringify({ a: 1, b: 'Textual content' })
-//        });
-//        const content = await rawResponse.json();
+async function deleteNews(id) {
 
-//        console.log(content);
-//    })();
-//}
+    let response = await fetch("api/News/" + id, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
 
-function render() {
-    let html = "<table>";
-    html += `<tr><th>Id</th><th>Header</th><th>Category</th><th>Created</th><th>Updated</th><th>Update</th><th>Delete</th></tr>`;
-    for (let news of allNews) {
-        html += `<tr>
-                    <td>${news.id}</td>
-                    <td>${news.header}</td>
-                    <td>${news.category === null ? "" : news.category.name}</td>
-                    <td>${news.createdDate}</td>
-                    <td>${news.updatedDate}</td>
-                    <td><button onclick="showUpdateNewsForm(${news.id})">Update</button></td>
-                    <td><button onclick="deleteNews(${news.id})">X</button></td>
-                 </tr>`;
+    if (response.status === 204) {
+
+        await updateNewsTable();
+    } else if (response.status === 404) {
+        console.log(`News with id = ${id} not found`);
+    } else {
+        console.log("Unexpected error", response);
     }
-    html += "</table>";
 
-    document.getElementById("newsList").innerHTML = html;
 }
 
 async function getAllNews() {
@@ -155,6 +271,115 @@ async function getAllNews() {
         allNews = newsList;
     }
     else {
-        console.log('Something went wrong: ' + response);
+        console.log('Unexpected error: ' + response);
     }
+}
+
+async function updateCategories() {
+
+    let response = await fetch("api/categories", {
+        method: "GET"
+    });
+
+    if (response.status === 200) {
+        state.allCategories = await response.json();
+    } else {
+        console.log("Unexpected error", response);
+    }
+
+}
+
+async function showUpdateNewsForm(id) {
+    state.updateAreaError = null;
+
+    let response = await fetch("api/News/" + id, {
+        method: "GET"
+    });
+
+    if (response.status === 200) {
+
+        state.activeArea = "updateArea";
+        state.updateArea = await response.json();
+
+        if (state.updateArea.category == null)
+            state.updateArea.selectedCategory = null;
+        else
+            state.updateArea.selectedCategory = state.updateArea.category.id; // lite fult
+        render();
+    } else {
+        console.log("Unexpected error: ", response);
+    }
+}
+
+async function updateNewsTable() {
+
+    let response = await fetch("api/News", {
+        method: "GET"
+    });
+
+    if (response.status === 200) {
+        state.allNews = await response.json();
+        render();
+    } else {
+        console.log("Unexpected error", response);
+    }
+
+}
+
+////////////////////////////////////////////////////
+// Hjälpfunktioner som underlättar och förenklar koden.
+////////////////////////////////////////////////////
+
+async function updateAll() {
+    await updateNewsTable();
+    await updateCategories();
+    state.activeArea = null;
+    render();
+}
+
+function getSelectedValue(id) {
+    let selector = byId(id);
+    if (selector.selectedIndex === -1)
+        return null;
+
+    return selector[selector.selectedIndex].value;
+}
+
+function fillDropdown(id, list, valuePropName, textPropName) {
+    byId(id).innerHTML = "";
+    // list = [{ id: "", name: "" }].concat(list);
+    for (let item of list) {
+        let option = document.createElement("option");
+        option.text = item[textPropName];
+        option.value = item[valuePropName];
+        byId(id).add(option);
+    }
+}
+
+function formatDate(date) {
+    return date.slice(0, 19).replace("T", " ");
+}
+
+function errorList(response) {
+
+    var errList = [];
+
+    if (response.Header) {
+        errList.push(response.Header[0]);
+    }
+
+    if (response.Intro) {
+        errList.push(response.Intro);
+    }
+
+    if (response.Body) {
+        errList.push(response.Body);
+    }
+
+    return errList.join("<br><br>");
+
+}
+
+function byId(id) {
+    return document.getElementById(id);
 }
