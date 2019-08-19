@@ -2,6 +2,7 @@
 var app = angular.module('newsApp', []);
 
 // https://www.w3schools.com/angular/angular_scopes.asp
+
 app.run(function ($rootScope, $http) {
     $rootScope.news = [];
     $rootScope.numberOfNews = $rootScope.news.length;
@@ -16,6 +17,8 @@ app.run(function ($rootScope, $http) {
     // --------------------------------------
 
     $rootScope.updateData = function () {
+
+        console.log('updateData invoked!');
 
         $http.get("api/categories")
             .then(function (response) {
@@ -45,7 +48,6 @@ app.run(function ($rootScope, $http) {
                 $rootScope.numberOfNews = response.data.length;
 
             });
-
     };
     
 });
@@ -64,6 +66,9 @@ app.controller('httpController', function ($scope, $http) {
 });
 
 app.controller('myAppController', function ($scope, $rootScope, $http) {
+
+    $scope.updateData();
+    $scope.content = $rootScope.news;
 
     // --------------------------------------
     // Återskapa databasen.
@@ -104,6 +109,31 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
                 $rootScope.numberOfNews = response.data;
                 myLogMessage('$rootScope.numberOfNews', $rootScope.numberOfNews);
             });
+    };
+
+    // --------------------------------------
+    // Lägg till nyhet
+    // --------------------------------------
+
+    $scope.updateViews = function () {
+
+        $scope.content = $rootScope.news;
+
+        //$http.get("api/news")
+        //    .then(function (response) {
+
+        //        // Sätter scope-variabeln content till arrayen av nyheter.
+        //        $scope.content = response.data;
+        //        $rootScope.news = response.data;
+
+        //        // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
+        //        //$scope.statuscode = response.status;
+        //        //$scope.statustext = response.statusText;
+
+        //        // Uppdaterar rootScope med korrekt värde för antal nyheter som finns i listan just nu.
+        //        $rootScope.numberOfNews = response.data.length;
+
+        //    });
     };
 
     // --------------------------------------
@@ -333,21 +363,21 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 });
 
 app.controller('myNewsListController', function ($scope, $rootScope, $http) {
-    $http.get("api/news")
-        .then(function (response) {
+    //$http.get("api/news")
+    //    .then(function (response) {
 
-            // Sätter scope-variabeln content till arrayen av nyheter.
-            $scope.content = response.data;
-            $rootScope.news = response.data;
+    //        // Sätter scope-variabeln content till arrayen av nyheter.
+    //        $scope.content = response.data;
+    //        $rootScope.news = response.data;
 
-            // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
-            //$scope.statuscode = response.status;
-            //$scope.statustext = response.statusText;
+    //        // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
+    //        //$scope.statuscode = response.status;
+    //        //$scope.statustext = response.statusText;
 
-            // Uppdaterar rootScope med korrekt värde för antal nyheter som finns i listan just nu.
-            $rootScope.numberOfNews = response.data.length;
+    //        // Uppdaterar rootScope med korrekt värde för antal nyheter som finns i listan just nu.
+    //        $rootScope.numberOfNews = response.data.length;
 
-        });
+    //    });
 });
 
 function myLogMessage(message, id) {
