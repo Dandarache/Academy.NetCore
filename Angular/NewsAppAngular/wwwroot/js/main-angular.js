@@ -2,9 +2,11 @@
 var app = angular.module('newsApp', []);
 
 // https://www.w3schools.com/angular/angular_scopes.asp
-app.run(function ($rootScope) {
+app.run(function ($rootScope, $http) {
     $rootScope.news = [];
     $rootScope.numberOfNews = $rootScope.news.length;
+    $rootScope.addArea = false;
+    $rootScope.updateArea = false;
 });
 
 // Det går att ha flera olika controllers som gör olika saker och mycket handlar 
@@ -45,6 +47,24 @@ app.controller('myButtonController', function ($scope, $rootScope, $http) {
     };
     $scope.clickShowAddNews = function () {
         console.log('clickShowAddNews clicked!');
+
+        $rootScope.addArea = true;
+    };
+    $scope.clickAddNews = function () {
+        console.log('clickAddNews clicked!');
+
+        var foo = {
+            header: $scope.addAreaHeader,
+            intro: $scope.addAreaHeader,
+            body: $scope.addAreaHeader
+        };
+
+        console.log(foo);
+        console.log(JSON.stringify(foo));
+
+        //console.log($scope.addAreaHeader);
+
+        $rootScope.addArea = false;
     };
 });
 
