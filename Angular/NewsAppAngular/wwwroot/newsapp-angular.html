@@ -12,10 +12,10 @@
     <div ng-app="newsApp">
 
         <div class="topbuttons" ng-controller="myButtonController">
-            <button id="seedButton" ng-click="clickSeed()" class="btn-inline">Seed</button>
+            <button ng-click="seedData()" ng-controller="httpController" id="seedButton" class="btn-inline">Seed</button>
             <button ng-click="clickStatArea()" class="btn-inline">Statistics</button>
-            <button id="recreateButton" onclick="clickRecreate()" class="btn-inline">Recreate</button>
-            <button onclick="clickShowAddNews()" class="btn-inline">Add</button>
+            <button ng-click="recreateData()" ng-controller="httpController" id="recreateButton" class="btn-inline">Recreate</button>
+            <button ng-click="clickShowAddNews()" class="btn-inline">Add</button>
         </div>
 
         <div id="newsList" ng-controller="myNewsListController">
@@ -53,8 +53,8 @@
                         <td>{{ x.category.name }}</td>
                         <td>{{ x.createdDate }}</td>
                         <td>{{ x.updatedDate }}</td>
-                        <td><button onclick="showUpdateNewsForm(2)">Update</button></td>
-                        <td><button onclick="deleteNews(2)">X</button></td>
+                        <td><button ng-click="showUpdateNewsForm(x.id)">Update</button></td>
+                        <td><button ng-click="deleteNews(x.id)">X</button></td>
                     </tr>
                 </tbody>
             </table>
