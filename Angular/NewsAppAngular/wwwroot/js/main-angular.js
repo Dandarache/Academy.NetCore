@@ -39,8 +39,8 @@ app.controller('myButtonController', function ($scope, $rootScope, $http) {
         console.log('clickStatArea clicked!');
         $http.get('api/news/count') // Exempel på ett anrop som använder GET för att hämta data.
             .then(function (response) {
-                $rootScope.numberOfNews = response.data.length;
-                myLogMessage('$scope.numberOfNews', $scope.numberOfNews);
+                $rootScope.numberOfNews = response.data;
+                myLogMessage('$rootScope.numberOfNews', $rootScope.numberOfNews);
             });
     };
     $scope.clickShowAddNews = function () {
@@ -54,6 +54,7 @@ app.controller('myNewsListController', function ($scope, $rootScope, $http) {
 
             // Sätter scope-variabeln content till arrayen av nyheter.
             $scope.content = response.data;
+            $rootScope.news = response.data;
 
             // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
             //$scope.statuscode = response.status;
