@@ -24,21 +24,56 @@
             <p>Status : {{statuscode}}</p>
             <p>StatusText : {{statustext}}</p>
 
+            <!--{
+            "id": 6,
+            "header": "No category",
+            "intro": "Bla bla bla",
+            "body": "Bla bla bla",
+            "updatedDate": "2016-01-03T00:00:00",
+            "createdDate": "2016-01-02T00:00:00",
+            "category": null
+            }-->
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Header</th>
+                        <th>Category</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                <thead>
+                <tbody>
+                    <tr ng-repeat="x in content">
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.header }}</td>
+                        <td>{{ x.category.name }}</td>
+                        <td>{{ x.createdDate }}</td>
+                        <td>{{ x.updatedDate }}</td>
+                        <td><button onclick="showUpdateNewsForm(2)">Update</button></td>
+                        <td><button onclick="deleteNews(2)">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
             <!-- Exempelkod som du kan använda när du skall skapa nyhetslistningen. -->
             <!--<table>
-        <tbody>
-            <tr><th>Id</th><th>Header</th><th>Category</th><th>Created</th><th>Updated</th><th>Update</th><th>Delete</th></tr>
-            <tr>
-                <td>2</td>
-                <td>Grizzly restored</td>
-                <td>Nature</td>
-                <td>2018-09-23 00:00:00</td>
-                <td>2018-09-25 00:00:00</td>
-                <td><button onclick="showUpdateNewsForm(2)">Update</button></td>
-                <td><button onclick="deleteNews(2)">X</button></td>
-            </tr>
-        </tbody>
-    </table>-->
+                <tbody>
+                    <tr><th>Id</th><th>Header</th><th>Category</th><th>Created</th><th>Updated</th><th>Update</th><th>Delete</th></tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Grizzly restored</td>
+                        <td>Nature</td>
+                        <td>2018-09-23 00:00:00</td>
+                        <td>2018-09-25 00:00:00</td>
+                        <td><button onclick="showUpdateNewsForm(2)">Update</button></td>
+                        <td><button onclick="deleteNews(2)">X</button></td>
+                    </tr>
+                </tbody>
+            </table>-->
         </div>
 
         <div id="addArea">
