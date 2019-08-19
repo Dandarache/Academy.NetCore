@@ -3,7 +3,8 @@ var app = angular.module('newsApp', []);
 
 // https://www.w3schools.com/angular/angular_scopes.asp
 app.run(function ($rootScope) {
-    $rootScope.numberOfNews = 0;
+    $rootScope.news = [];
+    $rootScope.numberOfNews = $rootScope.news.length;
 });
 
 // Det går att ha flera olika controllers som gör olika saker och mycket handlar 
@@ -50,17 +51,75 @@ app.controller('myButtonController', function ($scope, $rootScope, $http) {
 app.controller('myNewsListController', function ($scope, $rootScope, $http) {
     $http.get("api/news")
         .then(function (response) {
-            $scope.content = response.data;
-            $scope.statuscode = response.status;
-            $scope.statustext = response.statusText;
 
+            // Sätter scope-variabeln content till arrayen av nyheter.
+            $scope.content = response.data;
+
+            // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
+            //$scope.statuscode = response.status;
+            //$scope.statustext = response.statusText;
+
+            // Uppdaterar rootScope med korrekt värde för antal nyheter som finns i listan just nu.
             $rootScope.numberOfNews = response.data.length;
 
+            // Hantera klick på knappen för att UPPDATERA nyhet som visas i tabellen.
             $scope.showUpdateNewsForm = function (id) {
                 console.log('showUpdateNewsForm: ' + id);
             };
+
+            // Hantera klick på knappen för att RADERA nyhet som visas i tabellen.
             $scope.deleteNews = function (id) {
                 myLogMessage('deleteNews', id);
+
+                // Detta anrop anropar en end-point med DELETE (HttpDelete) i MVC som tar en parameter (id).
+                $http.delete(`api/News/${id}1234`)
+
+                    // När HTTP-anrop gjort skall följande hända
+                    .then(
+
+                        // Om allt gick bra (success) ...
+                        function (response) {
+                            alert(response.status);
+                        }
+
+                        ,
+
+                        // Om någonting strulade (error) ...
+                        function myError(response) {
+                            if (response.status === 404) {
+                                console.log(`News with id = ${id} not found`);
+                            } else {
+                                console.log("Unexpected error", response);
+                            }
+                        }
+                    );
+
+                    //--------------------
+                    // Gamla koden som inte körde AngularJS
+                    //--------------------
+
+                    //let response = fetch("api/News/" + id, {
+                    //    method: "DELETE",
+                    //    headers: {
+                    //        "Content-Type": "application/json"
+                    //    }
+                    //});
+
+                    //if (response.status === 204) {
+
+                    //    updateNewsTable();
+
+                    //} else if (response.status === 404) {
+
+                    //    console.log(`News with id = ${id} not found`);
+
+                    //} else {
+
+                    //    console.log("Unexpected error", response);
+
+                    //}
+
+                    //--------------------
             };
         });
 });

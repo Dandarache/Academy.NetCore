@@ -4,7 +4,7 @@
     <title>Newsapp</title>
     <link href="css/main.css" rel="stylesheet" />
 
-    <!-- Lägg till JavaScript för Angular här -->
+    <!-- Lägg till JavaScript för AngularJS här -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 </head>
@@ -20,19 +20,25 @@
 
         <div id="newsList" ng-controller="myNewsListController">
 
-            <p>Data : {{content}}</p>
-            <p>Status : {{statuscode}}</p>
-            <p>StatusText : {{statustext}}</p>
+            <!-- Vi använde markupen nedan för att visa det vi fick tillbaka vid första anropen (GET). -->
+            <!-- 
+                <p>Data : {{content}}</p>
+                <p>Status : {{statuscode}}</p>
+                <p>StatusText : {{statustext}}</p>
+            -->
 
-            <!--{
-            "id": 6,
-            "header": "No category",
-            "intro": "Bla bla bla",
-            "body": "Bla bla bla",
-            "updatedDate": "2016-01-03T00:00:00",
-            "createdDate": "2016-01-02T00:00:00",
-            "category": null
-            }-->
+            <!-- Exempel på hur ett object ser ut i JSON-arrayen som returneras. -->
+            <!--
+            {
+                "id": 6,
+                "header": "No category",
+                "intro": "Bla bla bla",
+                "body": "Bla bla bla",
+                "updatedDate": "2016-01-03T00:00:00",
+                "createdDate": "2016-01-02T00:00:00",
+                "category": null
+            }
+            -->
 
             <table>
                 <thead>
@@ -105,7 +111,7 @@
         <div id="statArea">
             <h3>Statistics</h3>
 
-            Number of news: <span ng-controller="myButtonController" id="nrOfNews">{{numberOfNews}}</span>
+            Number of news: <span id="nrOfNews">{{numberOfNews}}</span>
         </div>
 
         <!-- Lägg till din egen JavaScript fil här -->
