@@ -45,25 +45,64 @@ app.controller('myButtonController', function ($scope, $rootScope, $http) {
                 myLogMessage('$rootScope.numberOfNews', $rootScope.numberOfNews);
             });
     };
+
+    // Visa formuläret för lägg till nyhet.
     $scope.clickShowAddNews = function () {
         console.log('clickShowAddNews clicked!');
 
+        // Sätt rot-variabeln "addArea" till true för att på så sätt visa formuläret.
+        // Det är kopplingen som defineras med attributet "ng-show='addArea'" som gör detta möjligt.
         $rootScope.addArea = true;
     };
+
+    // Hantera klick på knappen "Add" som visas i formuläret för lägg till nyhet.
     $scope.clickAddNews = function () {
         console.log('clickAddNews clicked!');
 
-        var foo = {
+        // Skapa ett objekt med det data som tillhör den nya nyheten.
+        var data = {
             header: $scope.addAreaHeader,
-            intro: $scope.addAreaHeader,
-            body: $scope.addAreaHeader
+            intro: $scope.addAreaIntro,
+            body: $scope.addAreaBody
+        };
+        console.log(data); // logga objektet
+        console.log(JSON.stringify(data)); // logga objektet som en sträng
+
+        // För att end-point i WebAPI skall kunna tolka datat som skickas i anropet
+        // behöver man tala om att det är JSON genom att använda MIME-typen "application/json".
+        var config = {
+            headers: {
+                'Content-Type': 'application/xml'
+            }
         };
 
-        console.log(foo);
-        console.log(JSON.stringify(foo));
+        // Spara den nya nyheten.
+        $http.post(
+            'api/news', // URL till den end-point som skall anropas.
+            JSON.stringify(data), // Objektet för data behöver "plattas" till så att det blir en sträng och inte ett objekt.
+            JSON.stringify(config)) // Samma sak gäller för objektet för konfigurationen, dvs det behöver plattas till.
+            .then(
 
-        //console.log($scope.addAreaHeader);
+                // Denna metod körs om allt gick bra.
+                function (response) {
+                    alert('Rock n Roll: ' + response.statusText);
+                }
 
+                // Kommatecknet nedan skiljer gott och ont, dvs om requesten lyckades eller misslyckades.
+                ,
+
+                // Denna metod körs om något strulade.
+                function (response) {
+                    alert('Aj, aj, aj: ' + response.statusText);
+                }
+            );
+
+        // "Nollställ" fälten i formuläret.
+        $scope.addAreaHeader = '';
+        $scope.addAreaIntro = '';
+        $scope.addAreaBody = '';
+
+        // Göm "Lägg till nyhet"-dialogen.
         $rootScope.addArea = false;
     };
 });
