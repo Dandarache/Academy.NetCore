@@ -9,13 +9,13 @@
 
 </head>
 <body>
-    <div ng-app="newsApp">
+    <div ng-app="newsApp" ng-controller="myButtonController">
 
-        <div class="topbuttons" ng-controller="myButtonController">
-            <button ng-click="seedData()" ng-controller="httpController" id="seedButton" class="btn-inline">Seed</button>
-            <button ng-click="clickStatArea()" class="btn-inline">Statistics</button>
+        <div class="topbuttons">
+            <button ng-click="seedData()" ng-controller="myButtonController" id="seedButton" class="btn-inline">Seed</button>
+            <button ng-click="clickStatArea()" ng-controller="myButtonController" class="btn-inline">Statistics</button>
             <button ng-click="recreateData()" ng-controller="httpController" id="recreateButton" class="btn-inline">Recreate</button>
-            <button ng-click="clickShowAddNews()" class="btn-inline">Add</button>
+            <button ng-click="clickShowAddNews()" ng-controller="myButtonController" class="btn-inline">Add</button>
         </div>
 
         <div id="newsList" ng-controller="myNewsListController">
@@ -105,7 +105,7 @@
         <div id="statArea">
             <h3>Statistics</h3>
 
-            Number of news: <span id="nrOfNews"></span>
+            Number of news: <span ng-controller="myButtonController" id="nrOfNews">{{numberOfNews}}</span>
         </div>
 
         <!-- Lägg till din egen JavaScript fil här -->
