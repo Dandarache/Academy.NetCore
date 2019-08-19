@@ -9,31 +9,36 @@
 
 </head>
 <body>
-    <div ng-app="newsApp" ng-controller="myController">
+    <div ng-app="newsApp">
 
-        <div class="topbuttons">
+        <div class="topbuttons" ng-controller="myButtonController">
             <button id="seedButton" ng-click="clickSeed()" class="btn-inline">Seed</button>
             <button ng-click="clickStatArea()" class="btn-inline">Statistics</button>
             <button id="recreateButton" onclick="clickRecreate()" class="btn-inline">Recreate</button>
             <button onclick="clickShowAddNews()" class="btn-inline">Add</button>
         </div>
 
-        <div id="newsList">
+        <div id="newsList" ng-controller="myNewsListController">
+
+            <p>Data : {{content}}</p>
+            <p>Status : {{statuscode}}</p>
+            <p>StatusText : {{statustext}}</p>
+
             <!-- Exempelkod som du kan använda när du skall skapa nyhetslistningen. -->
             <!--<table>
-            <tbody>
-                <tr><th>Id</th><th>Header</th><th>Category</th><th>Created</th><th>Updated</th><th>Update</th><th>Delete</th></tr>
-                <tr>
-                    <td>2</td>
-                    <td>Grizzly restored</td>
-                    <td>Nature</td>
-                    <td>2018-09-23 00:00:00</td>
-                    <td>2018-09-25 00:00:00</td>
-                    <td><button onclick="showUpdateNewsForm(2)">Update</button></td>
-                    <td><button onclick="deleteNews(2)">X</button></td>
-                </tr>
-            </tbody>
-        </table>-->
+        <tbody>
+            <tr><th>Id</th><th>Header</th><th>Category</th><th>Created</th><th>Updated</th><th>Update</th><th>Delete</th></tr>
+            <tr>
+                <td>2</td>
+                <td>Grizzly restored</td>
+                <td>Nature</td>
+                <td>2018-09-23 00:00:00</td>
+                <td>2018-09-25 00:00:00</td>
+                <td><button onclick="showUpdateNewsForm(2)">Update</button></td>
+                <td><button onclick="deleteNews(2)">X</button></td>
+            </tr>
+        </tbody>
+    </table>-->
         </div>
 
         <div id="addArea">

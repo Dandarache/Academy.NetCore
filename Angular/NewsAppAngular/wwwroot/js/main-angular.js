@@ -1,6 +1,7 @@
 ﻿
 var app = angular.module('newsApp', []);
-app.controller('myController', function ($scope) {
+
+app.controller('myButtonController', function ($scope) {
     $scope.clickSeed = function () {
         alert('clickSeed clicked!');
     };
@@ -8,4 +9,14 @@ app.controller('myController', function ($scope) {
         alert('clickStatArea clicked!');
     };
 });
+
+app.controller('myNewsListController', function ($scope, $http) {
+    $http.get("api/news")
+        .then(function (response) {
+            $scope.content = response.data;
+            $scope.statuscode = response.status;
+            $scope.statustext = response.statusText;
+        });
+});
+
 
