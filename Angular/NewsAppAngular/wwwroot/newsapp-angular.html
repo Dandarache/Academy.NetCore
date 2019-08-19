@@ -9,13 +9,13 @@
 
 </head>
 <body>
-    <div ng-app="newsApp" ng-controller="myButtonController">
+    <div ng-app="newsApp" ng-controller="myAppController">
 
         <div class="topbuttons">
-            <button ng-click="seedData()" ng-controller="myButtonController" id="seedButton" class="btn-inline">Seed</button>
-            <button ng-click="clickStatArea()" ng-controller="myButtonController" class="btn-inline">Statistics</button>
-            <button ng-click="recreateData()" ng-controller="httpController" id="recreateButton" class="btn-inline">Recreate</button>
-            <button ng-click="clickShowAddNews()" ng-controller="myButtonController" class="btn-inline">Add</button>
+            <button ng-click="seedData()" id="seedButton" class="btn-inline">Seed</button>
+            <button ng-click="clickStatArea()" class="btn-inline">Statistics</button>
+            <button ng-click="recreateData()" id="recreateButton" class="btn-inline">Recreate</button>
+            <button ng-click="clickShowAddNews()" class="btn-inline">Add</button>
         </div>
 
         <div id="newsList" ng-controller="myNewsListController">
@@ -53,14 +53,14 @@
                     </tr>
                 <thead>
                 <tbody>
-                    <tr ng-repeat="x in content">
-                        <td>{{ x.id }}</td>
+                    <tr ng-repeat="x in news"">
+                        <td>{{x.id}}</td>
                         <td>{{ x.header }}</td>
                         <td>{{ x.category.name }}</td>
                         <td>{{ x.createdDate }}</td>
                         <td>{{ x.updatedDate }}</td>
-                        <td><button ng-click="showUpdateNewsForm(x.id)">Update</button></td>
-                        <td><button ng-click="deleteNews(x.id)">X</button></td>
+                        <td><button ng-click="clickUpdateNewsForm(x)">Update</button></td>
+                        <td><button ng-click="clickDeleteNews(x.id)">X</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -86,25 +86,33 @@
             <h3>Add news</h3>
 
             Header: <input ng-model="addAreaHeader" type="text" />
-            Category: <select id="addAreaCategory"></select>
+            Category: <select ng-model="addAreaCategory">
+                        <option ng-repeat="x in categories" value="{{x.value}}">{{x.name}}</option>
+                      </select>
             Intro: <input ng-model="addAreaIntro" type="text" />
             Body: <input ng-model="addAreaBody" type="text" />
 
             <button ng-click="clickAddNews()">Add</button>
+            <button ng-click="clickCancelAddNews()">Cancel</button>
 
             <div id="addAreaError"></div>
 
         </div>
 
-
         <div ng-show="updateArea">
             <h3>Update</h3>
-            Id: <input id="updateAreaId" type="text" readonly="readonly" />
-            Header: <input id="updateAreaHeader" type="text" />
-            Category: <select id="updateAreaCategory"></select>
-            Intro: <input id="updateAreaIntro" type="text" />
-            Body: <input id="updateAreaBody" type="text" />
-            <button onclick="clickUpdateNews()">Update</button>
+
+            Id: <input ng-model="updateAreaId" type="text" readonly="readonly" />
+            Header: <input ng-model="updateAreaHeader" type="text" />
+            Category: <select ng-model="updateAreaCategory">
+                         <option ng-repeat="x in categories" value="{{x.value}}">{{x.name}}</option>
+                      </select>
+            Intro: <input ng-model="updateAreaIntro" type="text" />
+            Body: <input ng-model="updateAreaBody" type="text" />
+
+            <button ng-click="clickUpdateNews()">Update</button>
+            <button ng-click="clickCancelUpdateNews()">Cancel</button>
+
             <div id="updateAreaError"></div>
         </div>
 
@@ -112,6 +120,9 @@
             <h3>Statistics</h3>
 
             Number of news: <span id="nrOfNews">{{numberOfNews}}</span>
+            <br />
+            Number of categories: <span id="nrOfNews">{{numberOfCategories}}</span>
+
         </div>
 
         <!-- Lägg till din egen JavaScript fil här -->
