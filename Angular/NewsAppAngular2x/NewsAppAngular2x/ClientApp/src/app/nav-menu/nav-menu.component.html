@@ -32,6 +32,15 @@
                 <span class='glyphicon glyphicon-glass'></span> Fetch news
               </a>
             </li>
+
+
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/fetch-categories"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-barcode'></span> Fetch categories
+              </a>
+            </li>
+
+
           </ul>
         </div>
     </div>

@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchNewsComponent } from './fetch-news/fetch-news.component';
+import { FetchCategoriesComponent } from './fetch-categories/fetch-categories.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FetchNewsComponent } from './fetch-news/fetch-news.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    FetchNewsComponent
+    FetchNewsComponent,
+    FetchCategoriesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,6 +31,7 @@ import { FetchNewsComponent } from './fetch-news/fetch-news.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'fetch-news', component: FetchNewsComponent },
+      { path: 'fetch-categories', component: FetchCategoriesComponent },
     ])
   ],
   providers: [],
