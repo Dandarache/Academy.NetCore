@@ -54,18 +54,11 @@ app.run(function ($rootScope, $http) {
 
 // Det går att ha flera olika controllers som gör olika saker och mycket handlar 
 // om att gruppera logik så att det blir enklare att t.ex förvalta applikationen.
-// I koden nedan har jag kommenterat bort seedData för att visa att den rutinen lika gärna kan ligga i myButtonController.
-app.controller('httpController', function ($scope, $http) {
-    //$scope.seedData = function () {
-    //    console.log('Re-create clicked!');
-    //    $http.post('api/news/seed', null, null)
-    //        .then(function (response) {
-    //            alert(response.status);
-    //        });
-    //};
-});
-
 app.controller('myAppController', function ($scope, $rootScope, $http) {
+
+    // --------------------------------------
+    // Uppdatera data och nyhetslistningen.
+    // --------------------------------------
 
     $scope.updateData();
     $scope.content = $rootScope.news;
@@ -78,7 +71,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
         console.log('Re-create clicked!');
         $http.post('api/news/recreate') // Detta anrop har bara URL till den end-point som skall anropas. Man behöver inte ange configuration och data.
             .then(function (response) {
-                alert(response.status);
+                console.log(response.status);
             });
     };
 
@@ -91,7 +84,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
         console.log('Seed clicked!');
         $http.post('api/news/seed', null, null) // Man behöver inte ange null och null eftersom att det finns flera överlagringar. parametrarna anger configuration och data som skall postas. 
             .then(function (response) {
-                alert(response.status);
+                console.log(response.status);
             });
 
         $scope.updateData();
@@ -109,31 +102,6 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
                 $rootScope.numberOfNews = response.data;
                 myLogMessage('$rootScope.numberOfNews', $rootScope.numberOfNews);
             });
-    };
-
-    // --------------------------------------
-    // Lägg till nyhet
-    // --------------------------------------
-
-    $scope.updateViews = function () {
-
-        $scope.content = $rootScope.news;
-
-        //$http.get("api/news")
-        //    .then(function (response) {
-
-        //        // Sätter scope-variabeln content till arrayen av nyheter.
-        //        $scope.content = response.data;
-        //        $rootScope.news = response.data;
-
-        //        // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
-        //        //$scope.statuscode = response.status;
-        //        //$scope.statustext = response.statusText;
-
-        //        // Uppdaterar rootScope med korrekt värde för antal nyheter som finns i listan just nu.
-        //        $rootScope.numberOfNews = response.data.length;
-
-        //    });
     };
 
     // --------------------------------------
@@ -362,23 +330,10 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
 });
 
-app.controller('myNewsListController', function ($scope, $rootScope, $http) {
-    //$http.get("api/news")
-    //    .then(function (response) {
 
-    //        // Sätter scope-variabeln content till arrayen av nyheter.
-    //        $scope.content = response.data;
-    //        $rootScope.news = response.data;
-
-    //        // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
-    //        //$scope.statuscode = response.status;
-    //        //$scope.statustext = response.statusText;
-
-    //        // Uppdaterar rootScope med korrekt värde för antal nyheter som finns i listan just nu.
-    //        $rootScope.numberOfNews = response.data.length;
-
-    //    });
-});
+// --------------------------------------
+// Vanliga JavaScript-metoder går naturligtvis också att använda.
+// --------------------------------------
 
 function myLogMessage(message, id) {
     console.log(message + ': ' + id);
