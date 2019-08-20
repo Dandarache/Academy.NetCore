@@ -18,7 +18,7 @@
             <button ng-click="clickShowAddNews()" class="btn-inline">Add</button>
         </div>
 
-        <div id="newsList" ng-controller="myNewsListController">
+        <div id="newsList">
 
             <!-- Vi använde markupen nedan för att visa det vi fick tillbaka vid första anropen (GET). -->
             <!-- 
@@ -87,7 +87,7 @@
 
             Header: <input ng-model="addAreaHeader" type="text" />
             Category: <select ng-model="addAreaCategory">
-                        <option ng-repeat="x in categories" value="{{x.value}}">{{x.name}}</option>
+                        <option ng-repeat="x in categories" value="{{x.id}}">{{x.name}}</option>
                       </select>
             Intro: <input ng-model="addAreaIntro" type="text" />
             Body: <input ng-model="addAreaBody" type="text" />
@@ -102,10 +102,10 @@
         <div ng-show="updateArea">
             <h3>Update</h3>
 
-            Id: <input ng-model="updateAreaId" type="text" readonly="readonly" />
+            Id: <input ng ng-model="updateAreaId" type="text" readonly="readonly" />
             Header: <input ng-model="updateAreaHeader" type="text" />
             Category: <select ng-model="updateAreaCategory">
-                         <option ng-repeat="x in categories" value="{{x.value}}">{{x.name}}</option>
+                         <option ng-selected="updateAreaCategory.id" ng-repeat="x in categories" value="{{x.id}}">{{x.name}}</option>
                       </select>
             Intro: <input ng-model="updateAreaIntro" type="text" />
             Body: <input ng-model="updateAreaBody" type="text" />

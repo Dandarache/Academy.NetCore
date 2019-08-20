@@ -16,7 +16,7 @@ app.run(function ($rootScope, $http) {
     // Uppdatera applikationens data
     // --------------------------------------
 
-    $rootScope.updateData = function () {
+    $rootScope.refreshData = function () {
 
         console.log('updateData invoked!');
 
@@ -25,7 +25,7 @@ app.run(function ($rootScope, $http) {
 
                 // Sätter scope-variabeln till arrayen av kategorier.
                 $rootScope.categories = response.data;
-                console.log('$rootScope.categories' + $rootScope.categories);
+                console.log('$rootScope.categories' + JSON.stringify($rootScope.categories));
 
                 // Uppdaterar rootScope med korrekt värde för antal kategorier som finns i databasen.
                 $rootScope.numberOfCategories = response.data.length;
@@ -38,7 +38,7 @@ app.run(function ($rootScope, $http) {
                 // Sätter scope-variabeln content till arrayen av nyheter.
                 //$scope.content = response.data;
                 $rootScope.news = response.data;
-                console.log('$rootScope.news' + $rootScope.news);
+                console.log('$rootScope.news' + JSON.stringify($rootScope.news));
 
                 // Vi behöver inte skriva ut eller använda information nedan i den nuvarande implementationen.
                 //$scope.statuscode = response.status;
@@ -57,11 +57,23 @@ app.run(function ($rootScope, $http) {
 app.controller('myAppController', function ($scope, $rootScope, $http) {
 
     // --------------------------------------
+    // Uppdatera data och nyhetslistningen vid laddning.
+    // --------------------------------------
+
+    $scope.refreshData();
+    $scope.content = $rootScope.news;
+
+    // --------------------------------------
     // Uppdatera data och nyhetslistningen.
     // --------------------------------------
 
-    $scope.updateData();
-    $scope.content = $rootScope.news;
+    $scope.updateData = function () {
+
+        $scope.refreshData();
+
+        $scope.content = $rootScope.news;
+
+    };
 
     // --------------------------------------
     // Återskapa databasen.
@@ -102,6 +114,8 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
                 $rootScope.numberOfNews = response.data;
                 myLogMessage('$rootScope.numberOfNews', $rootScope.numberOfNews);
             });
+
+        $scope.updateData();
     };
 
     // --------------------------------------
@@ -162,7 +176,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
                 // Denna metod körs om allt gick bra.
                 function (response) {
-                    alert('Rock n Roll: ' + response.statusText);
+                    console.log('Rock n Roll: ' + response.statusText);
                 }
 
                 // Kommatecknet nedan skiljer gott och ont, dvs om requesten lyckades eller misslyckades.
@@ -170,7 +184,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
                 // Denna metod körs om något strulade.
                 function (response) {
-                    alert('Aj, aj, aj: ' + response.statusText);
+                    console.log('Aj, aj, aj: ' + response.statusText);
                 }
             );
 
@@ -199,10 +213,11 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
         $scope.updateAreaHeader = obj.header;
         $scope.updateAreaIntro = obj.intro;
         $scope.updateAreaBody = obj.body;
-        $scope.updateAreaCategory = obj.category;
+        $scope.updateAreaCategory = obj.category.id;
 
         // Visa "Updatera nyhet"-dialogen.
         $rootScope.updateArea = true;
+
     };
 
     // Hantera klick på knappen för att avbryta UPPDATERA nyhet som visas i tabellen.
@@ -247,7 +262,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
                 // Denna metod körs om allt gick bra.
                 function (response) {
-                    alert('Rock n Roll: ' + response.statusText);
+                    console.log('Rock n Roll: ' + response.statusText);
                 }
 
                 // Kommatecknet nedan skiljer gott och ont, dvs om requesten lyckades eller misslyckades.
@@ -255,7 +270,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
                 // Denna metod körs om något strulade.
                 function (response) {
-                    alert('Aj, aj, aj: ' + response.statusText);
+                    console.log('Aj, aj, aj: ' + response.statusText);
                 }
             );
 
@@ -267,6 +282,9 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
         // Göm "Updatera nyhet"-dialogen.
         $rootScope.updateArea = false;
+
+        // Updatera data och listningar
+        $scope.updateData();
     };
 
     // --------------------------------------
@@ -285,7 +303,10 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
 
                 // Om allt gick bra (success) ...
                 function (response) {
-                    alert(response.status);
+                    console.log(response.status);
+
+                    // Updatera data och listningar
+                    $scope.updateData();
                 }
 
                 ,
@@ -298,7 +319,7 @@ app.controller('myAppController', function ($scope, $rootScope, $http) {
                         console.log("Unexpected error", response);
                     }
                 }
-            );
+        );
 
         //--------------------
         // Gamla koden som inte körde AngularJS
