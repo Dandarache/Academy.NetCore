@@ -1,0 +1,22 @@
+<h1>News</h1>
+
+<p>This component demonstrates fetching news from the server.</p>
+
+<p *ngIf="!news"><em>Loading...</em></p>
+
+<table class='table' *ngIf="news">
+  <thead>
+    <tr>
+      <th>Header</th>
+      <th>Intro</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let newsItem of news">
+      <td>{{ newsItem.header }}</td>
+      <td>{{ newsItem.intro }}</td>
+      <td>{{ newsItem.body }}</td>
+    </tr>
+  </tbody>
+</table>
