@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Angular2Plus.Controllers
+namespace NewsAppAngular2x.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
